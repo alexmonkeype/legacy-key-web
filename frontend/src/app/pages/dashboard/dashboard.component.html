@@ -4,8 +4,7 @@
 </section>
 <section>
     <h4>Fondos actuales</h4>
-    <div>Algorand: 1000</div>
-    <div>USDC: 1000</div>
+    <div *ngFor="let item of balances">{{item.name}}: {{item.amount}}</div>
 </section>
 <section class="program">
     <h4>Programa la movilización de tus fondos</h4>

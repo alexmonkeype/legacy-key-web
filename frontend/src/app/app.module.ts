@@ -8,6 +8,8 @@ import {AppComponent} from './app.component';
 import {LoginComponent} from './pages/login/login.component';
 import {DashboardComponent} from './pages/dashboard/dashboard.component';
 import {LegacyComponent} from './pages/legacy/legacy.component';
+import {PureStakeRepository} from "./data/repository/pure-stake-repository/pure-stake.repository";
+import {AlgoRepository} from "./core/repositories/algo.epository";
 
 
 @NgModule({
@@ -24,7 +26,12 @@ import {LegacyComponent} from './pages/legacy/legacy.component';
         HttpClientModule,
         MaterialModule,
     ],
-    providers: [],
+    providers: [
+        {
+            provide: AlgoRepository,
+            useClass: PureStakeRepository
+        }
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule {
