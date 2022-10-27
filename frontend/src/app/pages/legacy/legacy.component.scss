@@ -1,0 +1,14 @@
+table {
+  width: 100%;
+  margin: 20px 0;
+  th {
+    text-align: center;
+  }
+}
+mat-form-field {
+  margin-top: 18px;
+  max-width: 135px;
+  &.small {
+    max-width: 60px;
+  }
+}

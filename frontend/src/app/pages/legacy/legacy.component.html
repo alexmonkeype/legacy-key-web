@@ -1,0 +1,101 @@
+<section>
+    <h4>Billetera</h4>
+    <div>Dirección: xxxxx</div>
+</section>
+<section>
+    <h4>Fondos actuales</h4>
+    <div>Algorand: 1000</div>
+    <div>USDC: 1000</div>
+</section>
+<section class="program">
+    <h4>Programa tu legado aquí</h4>
+    <p>Elige la # de wallets y el % que deseas delegar</p>
+
+    <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <!-- Index Column -->
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Wallet #</th>
+            <td mat-cell *matCellDef="let element">
+                {{element.pos}}
+            </td>
+        </ng-container>
+
+        <!-- Alias Column -->
+        <ng-container matColumnDef="alias">
+            <th mat-header-cell *matHeaderCellDef> Alias (opcional)</th>
+            <td mat-cell *matCellDef="let element">
+                <mat-form-field appearance="fill">
+                    <input matInput placeholder="" value="{{element.alias}}">
+                </mat-form-field>
+            </td>
+        </ng-container>
+
+        <!-- Percent Column -->
+        <ng-container matColumnDef="percent">
+            <th mat-header-cell *matHeaderCellDef> %</th>
+            <td mat-cell *matCellDef="let element">
+                <mat-form-field appearance="fill" class="small">
+                    <input matInput placeholder="" value="{{element.percent}}" type="number" min="0" max="100">
+                </mat-form-field>
+            </td>
+        </ng-container>
+
+        <!-- Email 1 Column -->
+        <ng-container matColumnDef="email1">
+            <th mat-header-cell *matHeaderCellDef> Correo 1</th>
+            <td mat-cell *matCellDef="let element">
+                <mat-form-field appearance="fill">
+                    <input matInput placeholder="" value="{{element.email1}}" type="email">
+                </mat-form-field>
+            </td>
+        </ng-container>
+
+        <!-- Email 2 Column -->
+        <ng-container matColumnDef="email2">
+            <th mat-header-cell *matHeaderCellDef> Correo 2</th>
+            <td mat-cell *matCellDef="let element">
+                <mat-form-field appearance="fill">
+                    <input matInput placeholder="" value="{{element.email2}}" type="email">
+                </mat-form-field>
+            </td>
+        </ng-container>
+
+        <!-- New wallet Column -->
+        <ng-container matColumnDef="new_wallet">
+            <th mat-header-cell *matHeaderCellDef> Billetera nueva</th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-raised-button color="primary">Crear</button>
+            </td>
+        </ng-container>
+
+        <!-- New wallet Column -->
+        <ng-container matColumnDef="existing_wallet">
+            <th mat-header-cell *matHeaderCellDef> Billetera Existente</th>
+            <td mat-cell *matCellDef="let element">
+                <mat-form-field appearance="fill">
+                    <input matInput placeholder="" value="">
+                </mat-form-field>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <h4>Condiciones del servicio</h4>
+    <div>
+        Liberar fondos despues de &nbsp;
+        <mat-form-field appearance="fill" class="small">
+            <input matInput placeholder="" value="1" type="number" min="0">
+        </mat-form-field> &nbsp;
+        <mat-form-field appearance="fill">
+            <mat-select class="service-time-type">
+                <mat-option value="days">Días</mat-option>
+                <mat-option value="months">Meses</mat-option>
+                <mat-option value="years">Años</mat-option>
+            </mat-select>
+        </mat-form-field>  &nbsp;
+        de inactividad
+    </div>
+</section>
