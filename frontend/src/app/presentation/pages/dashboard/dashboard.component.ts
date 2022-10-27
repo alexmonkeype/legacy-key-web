@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {PeraService} from "../../services/pera.service";
-import {AlgoRepository} from "../../core/repositories/algo.epository";
-import {BalanceModel} from "../../core/domain/balance.model";
+import {BalanceModel} from "../../../core/domain/balance.model";
+import {GetBalanceUseCase} from "../../../core/usecases/get-balance.usecase";
 
 @Component({
     selector: 'app-dashboard',
@@ -16,7 +16,7 @@ export class DashboardComponent implements OnInit {
     constructor(
         private router: Router,
         private pera: PeraService,
-        private algo: AlgoRepository,
+        private getBalanceUseCase: GetBalanceUseCase,
     ) {
         this.pera.accountAddress.subscribe((address) => {
             if (address != null) {
@@ -30,7 +30,7 @@ export class DashboardComponent implements OnInit {
     }
 
     private getBalance(account: string) {
-        this.algo.getBalance(account)
+        this.getBalanceUseCase.execute(account)
             .then(data => {
                 this.balances = data;
             })

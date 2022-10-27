@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
-import {PeraService} from "./services/pera.service";
+import {PeraService} from "./presentation/services/pera.service";
 
 
 @Component({
