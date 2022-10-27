@@ -1,5 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatTable, MatTableDataSource} from "@angular/material/table";
+import {PeraService} from "../../services/pera.service";
 
 interface Wallet {
     pos: number,
@@ -15,6 +16,8 @@ interface Wallet {
     styleUrls: ['./legacy.component.scss']
 })
 export class LegacyComponent implements OnInit {
+    address = "";
+
     displayedColumns: string[] = ['name', 'alias', 'percent', 'email1', 'email2', 'new_wallet', 'existing_wallet'];
     wallets = [
         {
@@ -44,7 +47,14 @@ export class LegacyComponent implements OnInit {
     @ViewChild(MatTable)
     table = {} as MatTable<Wallet>;
 
-    constructor() {
+    constructor(
+        private pera: PeraService,
+    ) {
+        this.pera.accountAddress.subscribe((address) => {
+            if (address != null) {
+                this.address = address;
+            }
+        });
     }
 
     ngOnInit(): void {
