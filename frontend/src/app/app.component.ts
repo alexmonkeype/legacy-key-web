@@ -9,13 +9,19 @@ import {PeraService} from "./services/pera.service";
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit{
+    private isConnected = false;
+
     constructor(
         private router: Router,
         private pera: PeraService,
     ) {
         this.pera.accountAddress.subscribe((address) => {
             if (address != null) {
+                this.isConnected = true;
                 this.goToDashboard()
+            } else if (this.isConnected) {
+                this.router.navigate(['connect'])
+                    .catch();
             }
         });
     }

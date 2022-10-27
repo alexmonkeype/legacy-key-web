@@ -7,7 +7,7 @@ import {BehaviorSubject, Observable} from "rxjs";
     providedIn: 'root'
 })
 export class PeraService {
-    private wallet = new PeraWalletConnect();
+    private wallet = new PeraWalletConnect({shouldShowSignTxnToast: false});
 
     private _currentAccountAddress: string | null = null;
 
@@ -17,10 +17,11 @@ export class PeraService {
     constructor() {
         this.wallet.reconnectSession()
             .then((accounts) => {
-                if (accounts.length) {
-
-                    this.onConnect(accounts[0]);
-                }
+                console.log("reconnectSession", accounts);
+                this.onConnect(accounts[0]);
+            })
+            .catch(e => {
+                console.log("reconnectSession", e);
             });
     }
 
@@ -32,7 +33,14 @@ export class PeraService {
     }
 
     private onConnect(accountAddress: string) {
-        this.wallet.connector?.on("disconnect", this.handleDisconnectWalletClick);
+        const self = this;
+        this.wallet.connector?.on("disconnect", () => {
+            self.wallet?.disconnect()
+                .catch(e => {
+                    console.log("handleDisconnectWalletClick", e);
+                });
+            self.setAccountAddress(null);
+        });
         this.setAccountAddress(accountAddress);
     }
 
@@ -41,12 +49,7 @@ export class PeraService {
         this._accountAddress.next(accountAddress);
     }
 
-    getAccountAddress()  {
+    getAccountAddress() {
         return this._currentAccountAddress;
-    }
-
-    private handleDisconnectWalletClick() {
-        this.wallet.disconnect();
-        this.setAccountAddress(null);
     }
 }
