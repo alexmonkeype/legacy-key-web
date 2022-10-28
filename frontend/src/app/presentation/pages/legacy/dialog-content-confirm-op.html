@@ -1,0 +1,11 @@
+<h2 mat-dialog-title>Resumen de la transacción</h2>
+<mat-dialog-content class="mat-typography">
+    <p>Total para depositar (costo de nuestro servicio): <strong>${{data.fee}}</strong></p>
+    <p>Tarifa de transacción de Algorand: <strong>0.001</strong></p>
+    <br>
+    <p>Estas autorizando la transacción de <strong>${{data.amount}} ({{data.percent}}%)</strong> a traves de <strong>{{data.account}}</strong></p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button [mat-dialog-close]="false">Cancelar</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Aceptar</button>
+</mat-dialog-actions>

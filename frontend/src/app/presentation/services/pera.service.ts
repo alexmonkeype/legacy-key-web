@@ -17,7 +17,6 @@ export class PeraService {
     constructor() {
         this.wallet.reconnectSession()
             .then((accounts) => {
-                console.log("reconnectSession", accounts);
                 this.onConnect(accounts[0]);
             })
             .catch(e => {
