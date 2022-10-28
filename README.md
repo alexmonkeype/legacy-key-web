@@ -8,7 +8,7 @@
     
 #### Generando build de front
 
-    npm run build
+    cd frontend && npm run build
     
 
 #### Corriendo backend
