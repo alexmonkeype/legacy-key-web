@@ -2,9 +2,9 @@
 
 #### Instalando dependencias
 
-    cd frontend & npm install
+    cd frontend && npm install
     
-    cd backend & npm install
+    cd backend && npm install
     
 #### Generando build de front
 
