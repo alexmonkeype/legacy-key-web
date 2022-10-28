@@ -12,8 +12,8 @@ const mnemo2 = process.env.MNEMO2 as string
 const addres2 = process.env.ADDR2 as string
 
 
-// createAccount()
-// txAlgo(algodClient, mnemo1, addres2, 1000000)
-createASA(algodClient,mnemo1)
-// optinASA(algodClient,mnemo2,113321334)
+// createAccount() //crear cuentas con nmonica
+// txAlgo(algodClient, mnemo1, addres2, 1000000) //trabsfeir algos entre cuentas
+//createASA(algodClient,mnemo1) // crear token
+// optinASA(algodClient,mnemo2,113321334) // optin: Permiso para recibir token
 // txASA(algodClient,mnemo1,addres2,570,113321334)
