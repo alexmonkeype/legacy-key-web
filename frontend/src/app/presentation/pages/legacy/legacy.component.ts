@@ -68,8 +68,8 @@ export class LegacyComponent implements OnInit {
     displayedColumns: string[] = ['name', 'alias', 'percent', 'email1', 'email2', 'new_wallet', 'existing_wallet'];
     dataSource = new MatTableDataSource<Heir>(ELEMENT_DATA);
 
-    //@ViewChild(MatTable)
-    //table = {} as MatTable<Heir>;
+    @ViewChild(MatTable)
+    table = {} as MatTable<Heir>;
 
     constructor(
         public dialog: MatDialog,

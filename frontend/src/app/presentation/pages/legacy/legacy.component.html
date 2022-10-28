@@ -26,7 +26,7 @@
                 <th mat-header-cell *matHeaderCellDef> Alias (opcional)</th>
                 <td mat-cell *matCellDef="let element; let i = index">
                     <mat-form-field appearance="fill">
-                        <input matInput name="alias-{{index}}" [(ngModel)]="element.alias">
+                        <input matInput name="alias-{{i}}" [(ngModel)]="element.alias">
                     </mat-form-field>
                 </td>
             </ng-container>
@@ -36,7 +36,7 @@
                 <th mat-header-cell *matHeaderCellDef> %</th>
                 <td mat-cell *matCellDef="let element; let i = index">
                     <mat-form-field appearance="fill" class="small">
-                        <input matInput name="percent-{{index}}" [(ngModel)]="element.percent" type="number" min="0" max="100">
+                        <input matInput name="percent-{{i}}" [(ngModel)]="element.percent" type="number" min="0" max="100">
                     </mat-form-field>
                 </td>
             </ng-container>
@@ -44,9 +44,9 @@
             <!-- Email 1 Column -->
             <ng-container matColumnDef="email1">
                 <th mat-header-cell *matHeaderCellDef> Correo 1</th>
-                <td mat-cell *matCellDef="let element; let index = index">
+                <td mat-cell *matCellDef="let element; let i = index">
                     <mat-form-field appearance="fill">
-                        <input matInput name="email1-{{index}}" [(ngModel)]="element.email1" type="email">
+                        <input matInput name="email1-{{i}}" [(ngModel)]="element.email1" type="email">
                     </mat-form-field>
                 </td>
             </ng-container>
@@ -56,7 +56,7 @@
                 <th mat-header-cell *matHeaderCellDef> Correo 2</th>
                 <td mat-cell *matCellDef="let element; let i = index">
                     <mat-form-field appearance="fill">
-                        <input matInput name="email2-{{index}}" [(ngModel)]="element.email2" type="email">
+                        <input matInput name="email2-{{i}}" [(ngModel)]="element.email2" type="email">
                     </mat-form-field>
                 </td>
             </ng-container>
@@ -69,17 +69,17 @@
                             color="primary">Crear
                     </button>
                     <mat-form-field appearance="fill" *ngIf="element.new_wallet_address">
-                        <input matInput name="new-wallet-address-{{index}}" [(ngModel)]="element.new_wallet_address">
+                        <input matInput name="new-wallet-address-{{i}}" [(ngModel)]="element.new_wallet_address">
                     </mat-form-field>
                 </td>
             </ng-container>
 
-            <!-- New wallet Column -->
+            <!-- existing wallet Column -->
             <ng-container matColumnDef="existing_wallet">
                 <th mat-header-cell *matHeaderCellDef> Billetera Existente</th>
                 <td mat-cell *matCellDef="let element; let i = index">
                     <mat-form-field appearance="fill">
-                        <input matInput name="existing-wallet-address-{{index}}" [(ngModel)]="element.existing_wallet_address">
+                        <input matInput name="existing-wallet-address-{{i}}" [(ngModel)]="element.existing_wallet_address">
                     </mat-form-field>
                 </td>
             </ng-container>
