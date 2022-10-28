@@ -13,7 +13,7 @@
 
 #### Corriendo backend
 
-    npm start
+    ncd backend && pm start
     
 #### Accediendo a web local
 
