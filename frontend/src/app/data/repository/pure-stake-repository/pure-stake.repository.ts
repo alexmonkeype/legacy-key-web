@@ -1,12 +1,13 @@
 import {Injectable} from "@angular/core";
 import {Observable} from 'rxjs';
 import {AlgoRepository} from "../../../core/repositories/algo.epository";
-import {Algodv2} from "algosdk";
+import * as algoSdk from "algosdk";
 import {BalanceModel} from "../../../core/domain/balance.model";
 import {AccountInfoEntity} from "./account-info.entity";
 import {AssetModel} from "../../../core/domain/asset.model";
 import {PureStakeAssetMapper} from "./pure-stake-asset.mapper";
 import {AssetEntity} from "./asset.entity";
+import {AccountModel} from "../../../core/domain/account.model";
 
 const server = "https://testnet-algorand.api.purestake.io/ps2";
 const port = "";
@@ -18,15 +19,15 @@ const token = {
     providedIn: 'root'
 })
 export class PureStakeRepository extends AlgoRepository {
-    client: Algodv2;
+    client: algoSdk.Algodv2;
 
-    assetMapper = new PureStakeAssetMapper()
+    assetMapper = new PureStakeAssetMapper();
 
     constructor(
     ) {
         super();
 
-        this.client = new Algodv2(token, server, port);
+        this.client = new algoSdk.Algodv2(token, server, port);
     }
 
     getBalance(account: string): Promise<BalanceModel[]> {
@@ -54,6 +55,18 @@ export class PureStakeRepository extends AlgoRepository {
             this.client.getAssetByID(index).do()
                 .then(data => resolve(this.assetMapper.mapFrom(data as AssetEntity)))
                 .catch(err => reject(err))
+        });
+    }
+
+    createAccount(): Promise<AccountModel> {
+        return new Promise<AccountModel>((resolve, reject) => {
+            try {
+                const account = algoSdk.generateAccount();
+                const mn = algoSdk.secretKeyToMnemonic(account.sk);
+                resolve({address: account.addr, mnemonic: mn});
+            } catch (e) {
+                reject(e);
+            }
         });
     }
 }

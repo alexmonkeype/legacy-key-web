@@ -6,6 +6,7 @@ import {LegacyComponent} from "./pages/legacy/legacy.component";
 import {MaterialModule} from "../material.module";
 import {HttpClientModule} from "@angular/common/http";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AlgoRepository} from "../core/repositories/algo.epository";
 import {PureStakeRepository} from "../data/repository/pure-stake-repository/pure-stake.repository";
 
@@ -16,6 +17,8 @@ import {PureStakeRepository} from "../data/repository/pure-stake-repository/pure
         MaterialModule,
         HttpClientModule,
         BrowserAnimationsModule,
+        FormsModule,
+        ReactiveFormsModule,
     ],
     declarations: [
         LoginComponent,

@@ -12,3 +12,8 @@ mat-form-field {
     max-width: 60px;
   }
 }
+button {
+  &.big {
+    width: 300px;
+  }
+}
