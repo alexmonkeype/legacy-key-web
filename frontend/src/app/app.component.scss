@@ -2,6 +2,10 @@ header, footer {
   padding: 10px 20px;
   background-color: #24126A;
   color: #ffffff;
+  a {
+    color: #ffffff;
+    text-decoration: none;
+  }
 }
 .page {
   max-width: 900px;
