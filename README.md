@@ -20,3 +20,8 @@
 - [Landing](http://localhost:3000/)
 - [App](http://localhost:3000/app)
 
+#### Accediendo a web pública
+
+- [Landing](https://dev.monkey.pe/legacy-key-web/landing/)
+- [App](https://dev.monkey.pe/legacy-key-web/frontend/dist/app/)
+
