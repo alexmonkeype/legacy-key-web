@@ -177,7 +177,7 @@
         position: relative;
         min-height: 450px;
     }
-    
+
     #header-carousel .carousel-item img {
         position: absolute;
         width: 100%;
@@ -468,4 +468,8 @@
 
 .footer .copyright a:hover {
     color: #FFFFFF;
+}
+
+.footer h1.text-white {
+    font-size: 1.7rem;
 }
