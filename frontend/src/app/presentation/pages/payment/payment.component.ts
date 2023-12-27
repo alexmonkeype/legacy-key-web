@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { PayServiceUseCase } from '../../../core/usecases/pay-service.use-case';
+import { Blockchain } from '../../../core/types/blockchain.type';
 
 @Component({
   selector: 'app-payment',
@@ -7,18 +9,30 @@ import { Router } from '@angular/router';
   styleUrls: ['./payment.component.scss']
 })
 export class PaymentComponent implements OnInit {
-
-  address = "";
+  walletChain: Blockchain = "binance";
+  wallterAddress = "0x000000000";
+  asset = "usdt";
+  amount = 100;
 
   constructor(
-    private router: Router
+    private router: Router,
+    private payServiceUseCase: PayServiceUseCase
   ) { }
 
   ngOnInit(): void {
   }
 
   onPay() {
-    this.onSuccessPayment()
+    this.payServiceUseCase.execute({
+      walletChain: this.walletChain,
+      walletAddress: this.wallterAddress,
+      asset: this.asset,
+      amount: this.amount
+    }).then(balance => {
+      if (balance) {
+        this.onSuccessPayment();
+      }
+    }).catch(e => console.error(e));
   }
 
   onSuccessPayment() {
