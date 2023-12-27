@@ -58,7 +58,7 @@ export class LoginComponent implements OnInit {
         .catch();*/
   }
 
-  onBinaneConnect = () => {
+  onBinaneConnect() {
     this.binance
       .connect()
       .then(() => {

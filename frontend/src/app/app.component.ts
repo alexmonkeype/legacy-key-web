@@ -41,7 +41,7 @@ export class AppComponent implements OnInit {
   }
 
   goToDashboard() {
-    this.router.navigate(['dashboard'])
+    this.router.navigate(['payment'])
       .catch();
   }
 }

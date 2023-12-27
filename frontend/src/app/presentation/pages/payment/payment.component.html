@@ -1,0 +1,24 @@
+<section>
+  <h2>Pago de servicio</h2>
+  <div>Dirección: {{address}}</div>
+</section>
+<section>
+  <h4>Detalles de pago</h4>
+  <form class="form">
+    <div class="row">
+      <label>Plan asignado:</label>
+      <span>PRO+</span>
+    </div>
+    <div class="row">
+      <label>Monto:</label>
+      <span>$ 100 USD</span>
+    </div>
+    <div class="row">
+      <label>Tipo de pago:</label>
+      <span>Único</span>
+    </div>
+    <div class="footer">
+      <button type="submit" mat-raised-button color="primary" (click)="onPay()">Pagar ahora</button>
+    </div>
+  </form>
+</section>

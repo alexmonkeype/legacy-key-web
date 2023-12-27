@@ -16,15 +16,15 @@ export class BinanceService {
 
   connect = async (): Promise<void> => {
     //TODO: Implementar cnx a wallet de Binanceƒ
-    const connector = await this.binance.activate();
+    /* const connector = await this.binance.activate();
     if (connector.account) {
       this.setAccountAddress(connector.account);
-    }
+    } */
 
-    /* return new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
       this.setAccountAddress("Fake address");
       resolve();
-    }); */
+    });
   }
 
   private setAccountAddress(accountAddress: string | null) {
