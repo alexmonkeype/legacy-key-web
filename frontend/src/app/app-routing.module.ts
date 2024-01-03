@@ -5,13 +5,15 @@ import { DashboardComponent } from "./presentation/pages/dashboard/dashboard.com
 import { LegacyComponent } from "./presentation/pages/legacy/legacy.component";
 import { AuthGuard } from "./presentation/guards/auth.guard";
 import { PaymentComponent } from './presentation/pages/payment/payment.component';
+import { ContractComponent } from './presentation/pages/contract/contract.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/connect', pathMatch: 'full' },
   { path: 'connect', component: LoginComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'legacy', component: LegacyComponent, canActivate: [AuthGuard] },
-  { path: 'payment', component: PaymentComponent, canActivate: [AuthGuard] }
+  { path: 'payment', component: PaymentComponent, canActivate: [AuthGuard] },
+  { path: 'contract', component: ContractComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

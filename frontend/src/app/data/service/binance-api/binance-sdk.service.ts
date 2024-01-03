@@ -31,7 +31,7 @@ export class BinanceApiService extends BinanceRepository {
   }
 
   pay(address: string, asset: string, amount: number): Promise<BalanceModel> {
-    // return Promise.resolve({ name: "USDT", amount: 1000 });
-    return Promise.reject();
+    return Promise.resolve({ name: "USDT", amount: 1000 });
+    //return Promise.reject();
   }
 }

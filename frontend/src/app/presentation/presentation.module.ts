@@ -13,6 +13,7 @@ import { AlgorandRepository } from '../domain/repository/algorand.respository';
 import { BinanceRepository } from '../domain/repository/binance.respository ';
 import { PureStakeService } from '../data/service/pure-stake-repository/pure-stake.service';
 import { BinanceApiService } from '../data/service/binance-api/binance-sdk.service';
+import { ContractComponent } from './pages/contract/contract.component';
 
 
 @NgModule({
@@ -29,13 +30,15 @@ import { BinanceApiService } from '../data/service/binance-api/binance-sdk.servi
     DashboardComponent,
     LegacyComponent,
     DialogContentConfirmOpDialog,
-    PaymentComponent
+    PaymentComponent,
+    ContractComponent
   ],
   exports: [
     LoginComponent,
     DashboardComponent,
     LegacyComponent,
-    PaymentComponent
+    PaymentComponent,
+    ContractComponent
   ],
   providers: [
     {
