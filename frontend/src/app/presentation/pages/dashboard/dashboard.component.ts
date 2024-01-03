@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {PeraService} from "../../services/pera.service";
-import {BalanceModel} from "../../../core/domain/balance.model";
-import {GetBalanceUseCase} from "../../../core/usecases/get-balance.usecase";
+import {BalanceModel} from "../../../domain/model/balance.model";
+import {GetBalanceUseCase} from "../../../domain/usecase/get-balance.usecase";
 
 @Component({
     selector: 'app-dashboard',

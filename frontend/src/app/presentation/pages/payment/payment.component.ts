@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { PayServiceUseCase } from '../../../core/usecases/pay-service.use-case';
-import { Blockchain } from '../../../core/types/blockchain.type';
+import { PayServiceUseCase } from '../../../domain/usecase/pay-service.use-case';
+import { Blockchain } from '../../../domain/type/blockchain.type';
 
 @Component({
   selector: 'app-payment',

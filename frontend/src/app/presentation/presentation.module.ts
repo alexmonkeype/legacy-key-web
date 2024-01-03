@@ -9,10 +9,10 @@ import { LoginComponent } from "./pages/login/login.component";
 import { DashboardComponent } from "./pages/dashboard/dashboard.component";
 import { LegacyComponent, DialogContentConfirmOpDialog } from "./pages/legacy/legacy.component";
 import { PaymentComponent } from './pages/payment/payment.component';
-import { PureStakeRepository } from '../data/repository/pure-stake-repository/pure-stake.repository';
-import { AlgorandRepository } from '../core/repositories/algorand.respository';
-import { BinanceApiRepository } from '../data/repository/binance-api/binance-sdk.repository';
-import { BinanceRepository } from '../core/repositories/binance.respository ';
+import { AlgorandRepository } from '../domain/repository/algorand.respository';
+import { BinanceRepository } from '../domain/repository/binance.respository ';
+import { PureStakeService } from '../data/service/pure-stake-repository/pure-stake.service';
+import { BinanceApiService } from '../data/service/binance-api/binance-sdk.service';
 
 
 @NgModule({
@@ -40,11 +40,11 @@ import { BinanceRepository } from '../core/repositories/binance.respository ';
   providers: [
     {
       provide: AlgorandRepository,
-      useClass: PureStakeRepository
+      useClass: PureStakeService
     },
     {
       provide: BinanceRepository,
-      useClass: BinanceApiRepository
+      useClass: BinanceApiService
     }
   ],
 })

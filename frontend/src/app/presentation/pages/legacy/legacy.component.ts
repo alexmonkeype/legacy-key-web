@@ -1,9 +1,9 @@
 import {Component, Inject, OnInit, ViewChild} from '@angular/core';
 import {MatTable, MatTableDataSource} from "@angular/material/table";
 import {PeraService} from "../../services/pera.service";
-import {BalanceModel} from "../../../core/domain/balance.model";
-import {GetBalanceUseCase} from "../../../core/usecases/get-balance.usecase";
-import {CreateAccountUseCase} from "../../../core/usecases/create-account.usecase";
+import {BalanceModel} from "../../../domain/model/balance.model";
+import {GetBalanceUseCase} from "../../../domain/usecase/get-balance.usecase";
+import {CreateAccountUseCase} from "../../../domain/usecase/create-account.usecase";
 import {MAT_DIALOG_DATA, MatDialog} from "@angular/material/dialog";
 import {MatSnackBar} from "@angular/material/snack-bar";
 

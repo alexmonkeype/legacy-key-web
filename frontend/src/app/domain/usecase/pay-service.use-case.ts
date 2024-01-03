@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
 import { UseCase } from "../base/use-case";
-import { AlgorandRepository } from "../repositories/algorand.respository";
-import { BinanceRepository } from "../repositories/binance.respository ";
-import { Blockchain } from "../types/blockchain.type";
-import { BalanceModel } from "../domain/balance.model";
+import { AlgorandRepository } from "../repository/algorand.respository";
+import { BinanceRepository } from "../repository/binance.respository ";
+import { Blockchain } from "../type/blockchain.type";
+import { BalanceModel } from "../model/balance.model";
 
 @Injectable({
   providedIn: 'root'

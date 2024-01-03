@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { UseCase } from "../base/use-case";
-import { AccountModel } from "../domain/account.model";
-import { AlgorandRepository } from "../repositories/algorand.respository";
+import { AccountModel } from "../model/account.model";
+import { AlgorandRepository } from "../repository/algorand.respository";
 
 @Injectable({
   providedIn: 'root'

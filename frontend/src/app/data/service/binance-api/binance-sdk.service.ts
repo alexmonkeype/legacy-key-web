@@ -1,13 +1,13 @@
 import { Injectable } from "@angular/core";
-import { BalanceModel } from "../../../core/domain/balance.model";
-import { AssetModel } from "../../../core/domain/asset.model";
-import { AccountModel } from "../../../core/domain/account.model";
-import { BinanceRepository } from "../../../core/repositories/binance.respository ";
+import { BalanceModel } from "../../../domain/model/balance.model";
+import { AssetModel } from "../../../domain/model/asset.model";
+import { AccountModel } from "../../../domain/model/account.model";
+import { BinanceRepository } from "../../../domain/repository/binance.respository ";
 
 @Injectable({
   providedIn: 'root'
 })
-export class BinanceApiRepository extends BinanceRepository {
+export class BinanceApiService extends BinanceRepository {
   constructor(
   ) {
     super();

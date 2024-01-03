@@ -1,25 +1,20 @@
 import { Injectable } from "@angular/core";
 import { Observable } from 'rxjs';
 import * as algoSdk from "algosdk";
-import { BalanceModel } from "../../../core/domain/balance.model";
-import { AccountInfoEntity } from "./account-info.entity";
-import { AssetModel } from "../../../core/domain/asset.model";
-import { PureStakeAssetMapper } from "./pure-stake-asset.mapper";
-import { AssetEntity } from "./asset.entity";
-import { AccountModel } from "../../../core/domain/account.model";
-import { AlgorandRepository } from "../../../core/repositories/algorand.respository";
+import { BalanceModel } from "../../../domain/model/balance.model";
+import { AccountInfo } from "./type/account-info.type";
+import { AssetModel } from "../../../domain/model/asset.model";
+import { PureStakeAssetMapper } from "../../mapper/pure-stake-asset.mapper";
+import { Asset } from "./type/asset.type";
+import { AccountModel } from "../../../domain/model/account.model";
+import { AlgorandRepository } from "../../../domain/repository/algorand.respository";
+import { environment } from "../../../../environments/environment";
 
-
-const server = "https://testnet-algorand.api.purestake.io/ps2";
-const port = "";
-const token = {
-  "x-api-key": "BVGhHCWd7w8YvU5l2eCfc8DCHcYAM7Wgi3ktMzHb"
-};
 
 @Injectable({
   providedIn: 'root'
 })
-export class PureStakeRepository extends AlgorandRepository {
+export class PureStakeService extends AlgorandRepository {
   client: algoSdk.Algodv2;
 
   assetMapper = new PureStakeAssetMapper();
@@ -28,14 +23,17 @@ export class PureStakeRepository extends AlgorandRepository {
   ) {
     super();
 
-    this.client = new algoSdk.Algodv2(token, server, port);
+    const token = {
+      "x-api-key": environment.ALGORAND_SEVER_API_KEY
+    };
+    this.client = new algoSdk.Algodv2(token, environment.ALGORAND_SEVER_URL, environment.ALGORAND_SEVER_PORT);
   }
 
   getBalance(account: string): Promise<BalanceModel[]> {
     return new Promise<BalanceModel[]>((resolve, reject) => {
       this.client.accountInformation(account).do()
         .then(async data => {
-          const accountInfo = data as AccountInfoEntity;
+          const accountInfo = data as AccountInfo;
           const result = [] as BalanceModel[];
 
           result.push({ name: "ALGO", amount: accountInfo.amount });
@@ -54,7 +52,7 @@ export class PureStakeRepository extends AlgorandRepository {
   getAssetByID(index: number): Promise<AssetModel> {
     return new Promise<AssetModel>((resolve, reject) => {
       this.client.getAssetByID(index).do()
-        .then(data => resolve(this.assetMapper.mapFrom(data as AssetEntity)))
+        .then(data => resolve(this.assetMapper.mapFrom(data as Asset)))
         .catch(err => reject(err))
     });
   }

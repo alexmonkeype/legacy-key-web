@@ -1,6 +1,6 @@
-import { BalanceModel } from "../domain/balance.model";
-import { AssetModel } from "../domain/asset.model";
-import { AccountModel } from "../domain/account.model";
+import { BalanceModel } from "../model/balance.model";
+import { AssetModel } from "../model/asset.model";
+import { AccountModel } from "../model/account.model";
 
 export abstract class BlockchainRepository {
   abstract getBalance(account: string): Promise<BalanceModel[]>;
