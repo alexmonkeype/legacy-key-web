@@ -1,4 +1,4 @@
-export interface BalanceModel {
+export interface Balance {
     name: string;
     amount: number
 }

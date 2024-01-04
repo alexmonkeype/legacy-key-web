@@ -2,7 +2,7 @@ export type AssetParams = {
   name: string
 }
 
-export type Asset = {
+export type AssetType = {
   index: number,
   params: AssetParams
 }

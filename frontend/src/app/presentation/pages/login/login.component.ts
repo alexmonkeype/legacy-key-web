@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
-import { PeraWalletService } from "../../wallets/pera-wallet.service";
-import { MetamaskWalletService } from '../../wallets/metamask-wallet.service';
+import { LoginWeb3UseCase } from '../../../domain/usecase/login-web3.use-case';
 
 @Component({
   selector: 'app-login',
@@ -11,41 +10,19 @@ import { MetamaskWalletService } from '../../wallets/metamask-wallet.service';
 export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
-    private peraWallet: PeraWalletService,
-    private metamaskWallet: MetamaskWalletService
+    private loginWeb3UseCase: LoginWeb3UseCase
   ) {
   }
 
   ngOnInit(): void {
-    /*this.peraWallet.reconnectSession()
-        .then((accounts) => {
-            console.log("reconectando");
-            // Setup the disconnect event listener
-            this.peraWallet.connector?.on("disconnect", this.handleDisconnectWalletClick);
-
-            if (accounts.length) {
-                this.setAccountAddress(accounts[0]);
-            }
-        });*/
   }
 
-  /*handleDisconnectWalletClick() {
-      this.pera.wallet.disconnect();
-      this.setAccountAddress(null);
-  }*/
-
-  /*setAccountAddress(address: any) {
-      console.log("address", address);
-  }*/
-
   onPeraConnect() {
-    this.peraWallet
-      .connect()
-      .then((newAccounts) => {
-        // Setup the disconnect event listener
-        //this.pera.wallet.connector?.on("disconnect", this.handleDisconnectWalletClick);
-
-        //this.setAccountAddress(newAccounts[0]);
+    this.loginWeb3UseCase
+      .execute("pera")
+      .then((accounts) => {
+        this.router.navigate(['payment'])
+        .catch();
       })
       .catch((error) => {
         // You MUST handle the reject because once the user closes the modal, peraWallet.connect() promise will be rejected.
@@ -54,14 +31,14 @@ export class LoginComponent implements OnInit {
           // log the necessary errors
         }
       });
-    /*this.router.navigate(['dashboard'])
-        .catch();*/
   }
 
   onMetamaskConnect() {
-    this.metamaskWallet
-      .connect()
-      .then(() => {
+    this.loginWeb3UseCase
+      .execute("metamask")
+      .then((accounts) => {
+        this.router.navigate(['payment'])
+        .catch();
       })
       .catch((error) => {
         // You MUST handle the reject because once the user closes the modal, peraWallet.connect() promise will be rejected.

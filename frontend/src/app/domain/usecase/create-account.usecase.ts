@@ -1,18 +1,18 @@
 import { Injectable } from "@angular/core";
 import { UseCase } from "../base/use-case";
-import { AccountModel } from "../model/account.model";
+import { Account } from "../model/account.model";
 import { AlgorandRepository } from "../repository/algorand.respository";
 
 @Injectable({
   providedIn: 'root'
 })
-export class CreateAccountUseCase implements UseCase<void, AccountModel> {
+export class CreateAccountUseCase implements UseCase<void, Account> {
   constructor(
     private algoRepository: AlgorandRepository
   ) {
   }
 
-  execute(params: void): Promise<AccountModel> {
+  execute(params: void): Promise<Account> {
     return this.algoRepository.createAccount();
   }
 }

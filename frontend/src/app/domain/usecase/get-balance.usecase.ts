@@ -1,19 +1,19 @@
-import {Injectable} from "@angular/core";
-import {UseCase} from "../base/use-case";
-import {BalanceModel} from "../model/balance.model";
+import { Injectable } from "@angular/core";
+import { UseCase } from "../base/use-case";
+import { Balance } from "../model/balance.model";
 import { AlgorandRepository } from "../repository/algorand.respository";
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
-export class GetBalanceUseCase implements UseCase<string, BalanceModel[]> {
-    constructor(
-        private algoRepository: AlgorandRepository
-    ) {
+export class GetBalanceUseCase implements UseCase<string, Balance[]> {
+  constructor(
+    private algoRepository: AlgorandRepository
+  ) {
 
-    }
+  }
 
-    execute(params: string): Promise<BalanceModel[]> {
-        return this.algoRepository.getBalance(params);
-    }
+  execute(params: string): Promise<Balance[]> {
+    return this.algoRepository.getBalance(params);
+  }
 }

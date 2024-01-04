@@ -3,7 +3,7 @@ export type Asset = {
   amount: number
 }
 
-export type AccountInfo = {
+export type AccountInfoType = {
   address: string,
   amount: number,
   assets: Asset[]

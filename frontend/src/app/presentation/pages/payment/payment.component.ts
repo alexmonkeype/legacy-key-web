@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PayServiceUseCase } from '../../../domain/usecase/pay-service.use-case';
 import { Blockchain } from '../../../domain/type/blockchain.type';
-import { PeraWalletService } from '../../wallets/pera-wallet.service';
-import { MetamaskWalletService } from '../../wallets/metamask-wallet.service';
+import { GetAccountUseCase } from '../../../domain/usecase/get-account.use-case';
+
 
 @Component({
   selector: 'app-payment',
@@ -18,19 +18,16 @@ export class PaymentComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private peraWallet: PeraWalletService,
-    private metamaskWallet: MetamaskWalletService,
+    private getAccountUseCase: GetAccountUseCase,
     private payServiceUseCase: PayServiceUseCase
   ) {
-    if (this.peraWallet.getAccountAddress()) {
-      this.wallterAddress = peraWallet.getAccountAddress();
-    }
-    if (this.metamaskWallet.getAccountAddress()) {
-      this.wallterAddress = metamaskWallet.getAccountAddress();
-    }
   }
 
   ngOnInit(): void {
+    this.getAccountUseCase.execute()
+      .then(acc => {
+        this.wallterAddress = acc.address;
+      });
   }
 
   onPay() {

@@ -12,6 +12,8 @@ import { PaymentComponent } from './pages/payment/payment.component';
 import { AlgorandRepository } from '../domain/repository/algorand.respository';
 import { PureStakeService } from '../data/service/pure-stake-repository/pure-stake.service';
 import { ContractComponent } from './pages/contract/contract.component';
+import { EthereumRepository } from '../domain/repository/ethereum.respository';
+import { EthereunService } from '../data/service/ethereum/ethereum.service';
 
 
 @NgModule({
@@ -42,6 +44,10 @@ import { ContractComponent } from './pages/contract/contract.component';
     {
       provide: AlgorandRepository,
       useClass: PureStakeService
+    },
+    {
+      provide: EthereumRepository,
+      useClass: EthereunService
     }
   ],
 })

@@ -1,4 +1,4 @@
-export interface AccountModel {
-    address: string;
-    mnemonic: string;
+export interface Account {
+    address: string | null;
+    mnemonic?: string;
 }

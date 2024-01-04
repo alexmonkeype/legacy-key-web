@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
-import {BalanceModel} from "../../../domain/model/balance.model";
+import {Balance} from "../../../domain/model/balance.model";
 import {GetBalanceUseCase} from "../../../domain/usecase/get-balance.usecase";
-import { PeraWalletService } from '../../wallets/pera-wallet.service';
+import { PeraWalletService } from '../../../data/service/pera-wallet/pera-wallet.service';
 
 @Component({
     selector: 'app-dashboard',
@@ -11,19 +11,19 @@ import { PeraWalletService } from '../../wallets/pera-wallet.service';
 })
 export class DashboardComponent implements OnInit {
     address = "";
-    balances = [] as BalanceModel[];
+    balances = [] as Balance[];
 
     constructor(
         private router: Router,
-        private pera: PeraWalletService,
+        /* private pera: PeraWalletService, */
         private getBalanceUseCase: GetBalanceUseCase,
     ) {
-        this.pera.accountAddress.subscribe((address) => {
+        /* this.pera.accountAddress.subscribe((address) => {
             if (address != null) {
                 this.address = address;
                 this.getBalance(address)
             }
-        });
+        }); */
     }
 
     ngOnInit(): void {
