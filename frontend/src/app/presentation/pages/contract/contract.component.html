@@ -3,69 +3,87 @@
     <h4>Datos del otorgante</h4>
     <div class="row">
       <label>Nombre</label>
-      <input type="text" name="grantor_first_name" placeholder="Escribe aquí el nombre del otorgante" required/>
+      <input type="text" name="grantor_first_name" [(ngModel)]="contract.grantor.firstName"
+        placeholder="Escribe aquí el nombre del otorgante" required />
     </div>
     <div class="row">
       <label>Apellidos</label>
-      <input type="text" name="grantor_last_name" placeholder="Escribe aquí los apellidos del otorgante" required/>
+      <input type="text" name="grantor_last_name" [(ngModel)]="contract.grantor.lastName"
+        placeholder="Escribe aquí los apellidos del otorgante" required />
     </div>
     <div class="row">
       <label>Documento de identidad</label>
-      <input type="text" name="grantor_document_id" placeholder="Documento de identidad del otorgante" required/>
+      <input type="text" name="grantor_document_id" [(ngModel)]="contract.grantor.documentId"
+        placeholder="Documento de identidad del otorgante" required />
     </div>
     <div class="row">
       <label>Correo electrónico</label>
-      <input type="email" name="grantor_email" placeholder="Correo electrónico del otorgante" required/>
+      <input type="email" name="grantor_email" [(ngModel)]="contract.grantor.email"
+        placeholder="Correo electrónico del otorgante" required />
     </div>
     <div class="row">
       <label>Celular</label>
-      <input type="text" name="grantor_phonenumber" placeholder="Número de celular para contactos" required/>
+      <input type="text" name="grantor_phonenumber" [(ngModel)]="contract.grantor.phonenumber"
+        placeholder="Número de celular para contactos" required />
     </div>
-    <h4>Datos del beneficiario</h4>
-    <div class="row">
-      <label>Nombre</label>
-      <input type="text" name="beneficiary_first_name" placeholder="Escribe aquí el nombre del beneficiario" required/>
+
+
+    <div *ngFor="let beneficiary of contract.beneficiaries; index as i;" class="beneficiaries">
+      <h4>Datos del beneficiario {{i + 1}}</h4>
+      <div class="row">
+        <label>Nombre</label>
+        <input type="text" name="beneficiary_first_name[{{i}}]" [(ngModel)]="contract.beneficiaries[i].firstName"
+          placeholder="Escribe aquí el nombre del beneficiario" required />
+      </div>
+      <div class="row">
+        <label>Apellidos</label>
+        <input type="text" name="beneficiary_last_name" [(ngModel)]="contract.beneficiaries[i].lastName"
+          placeholder="Escribe aquí el apellido del beneficiario" required />
+      </div>
+      <div class="row">
+        <label>Correo electrónico</label>
+        <input type="email" name="beneficiary_email" [(ngModel)]="contract.beneficiaries[i].email"
+          placeholder="Escribe aquí el correo electronico del beneficiario" required />
+      </div>
+      <div class="row">
+        <input type="checkbox" name="beneficiary_send_info" [(ngModel)]="contract.beneficiaries[i].sendInfo" />
+        <span>Enviar información al heredero al culminar la creación de la herencia</span>
+      </div>
+      <div class="row">
+        <label>Celular</label>
+        <input type="text" name="beneficiary_phonenumber" [(ngModel)]="contract.beneficiaries[i].phonenumber"
+          placeholder="Escribe aquí el celular del beneficiario" required />
+      </div>
+      <div class="row">
+        <label>Monto</label>
+        <input type="text" name="beneficiary_asset_amount" placeholder="Digita el monto a heredar" required />
+      </div>
+      <div class="row">
+        <label>Criptoactivo</label>
+        <select name="beneficiary_asset_name[]" required>
+          <option disabled selected>Criptoactivo</option>
+          <option name="BTC">Bitcoin</option>
+          <option name="ETH">Etherium</option>
+          <option name="BNB">BNB</option>
+          <option name="USDT">USDT</option>
+        </select>
+      </div>
+      <div class="row">
+        <label>Enviar a wallet</label>
+        <input type="text" name="beneficiary_wallet" [(ngModel)]="contract.beneficiaries[i].walletAddress"
+          placeholder="Buscar, dirección publica o ENS" required />
+      </div>
     </div>
     <div class="row">
-      <label>Apellidos</label>
-      <input type="text" name="beneficiary_last_name" placeholder="Escribe aquí el apellido del beneficiario" required/>
-    </div>
-    <div class="row">
-      <label>Correo electrónico</label>
-      <input type="email" name="beneficiary_email" placeholder="Escribe aquí el correo electronico del beneficiario" required/>
-    </div>
-    <div class="row">
-      <input type="checkbox" name="beneficiary_send_info" />
-      <span>Enviar información al heredero al culminar la creación de la herencia</span>
-    </div>
-    <div class="row">
-      <label>Celular</label>
-      <input type="text" name="beneficiary_phonenumber" placeholder="Escribe aquí el celular del beneficiario" required/>
-    </div>
-    <div class="row">
-      <label>Monto</label>
-      <input type="text" name="beneficiary_asset_amount" placeholder="Digita el monto a heredar" required/>
-    </div>
-    <div class="row">
-      <label>Criptoactivo</label>
-      <select name="beneficiary_asset_name[]" required>
-        <option disabled selected>Criptoactivo</option>
-        <option name="BTC">Bitcoin</option>
-        <option name="ETH">Etherium</option>
-        <option name="BNB">BNB</option>
-        <option name="USDT">USDT</option>
-      </select>
-    </div>
-    <div class="row">
-      <label>Enviar a wallet</label>
-      <input type="text" name="beneficiary_wallet" placeholder="Buscar, dirección publica o ENS" required/>
+      <button mat-raised-button color="primary" (click)="onAddBeneficiary()">Añadir otro heredero</button>
     </div>
     <h4>Datos de validadores</h4>
     <div class="row">
       <label>Cantidad de validadores</label>
-      <select name="validator_qty" required>
+      <select name="validator_qty" (change)="onValidatorsQtyChange($event.target.value)">
         <option disabled selected>Seleccionar número</option>
         <option name="1">1</option>
+        <option name="3">3</option>
       </select>
     </div>
     <div class="row">
@@ -78,19 +96,25 @@
         <option name="18">1 año y 6 meses</option>
       </select>
     </div>
-    <h4>Validador 1</h4>
-    <div class="row">
-      <label>Nombre</label>
-      <input type="text" name="validator_first_name[0]" placeholder="Escribe aqui los nombres del validador 1" required/>
+
+    <div *ngFor="let validator of contract.validators; index as i;" class="validators">
+      <h4>Validador {{i + 1}}</h4>
+      <div class="row">
+        <label>Nombre</label>
+        <input type="text" name="validator_first_name[i]" placeholder="Escribe aqui los nombres del validador 1"
+          required />
+      </div>
+      <div class="row">
+        <label>Apellidos</label>
+        <input type="text" name="validator_last_name[i]" placeholder="Escribe aqui  los apellidos del validador 1"
+          required />
+      </div>
+      <div class="row">
+        <label>Documento de identidad</label>
+        <input type="text" name="validator_document_id[i]" placeholder="Documento de identidad validador 1" required />
+      </div>
     </div>
-    <div class="row">
-      <label>Apellidos</label>
-      <input type="text" name="validator_last_name[0]" placeholder="Escribe aqui  los apellidos del validador 1" required/>
-    </div>
-    <div class="row">
-      <label>Documento de identidad</label>
-      <input type="text" name="validator_document_id[0]" placeholder="Documento de identidad validador 1" required/>
-    </div>
+
     <div class="footer">
       <button type="submit" mat-raised-button color="primary">Guardar</button>
     </div>
