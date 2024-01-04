@@ -10,8 +10,7 @@ import { BalanceModel } from "../model/balance.model";
 })
 export class PayServiceUseCase implements UseCase<PayServiceParams, BalanceModel | null> {
   constructor(
-    private algoRepository: AlgorandRepository,
-    private bnbRepository: BinanceRepository,
+    private algoRepository: AlgorandRepository
   ) {
 
   }
@@ -21,8 +20,9 @@ export class PayServiceUseCase implements UseCase<PayServiceParams, BalanceModel
     //De esa forma nos aseguramos que para que activar el contrato ya hice la transferencia a nuestra cuenta
 
     switch (params.walletChain) {
-      case "binance":
-        return this.bnbRepository.pay(params.walletAddress, params.asset, params.amount);
+      case "ethereum":
+        //return this.bnbRepository.pay(params.walletAddress, params.asset, params.amount);
+        break;
       case "algorand":
         break;
     }

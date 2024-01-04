@@ -6,7 +6,7 @@ import { BehaviorSubject, Observable } from "rxjs";
 @Injectable({
   providedIn: 'root'
 })
-export class PeraService {
+export class PeraWalletService {
   private wallet = new PeraWalletConnect({ shouldShowSignTxnToast: false });
 
   private _currentAccountAddress: string | null = null;

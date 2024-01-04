@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
-import {PeraService} from "../../services/pera.service";
 import {BalanceModel} from "../../../domain/model/balance.model";
 import {GetBalanceUseCase} from "../../../domain/usecase/get-balance.usecase";
+import { PeraWalletService } from '../../wallets/pera-wallet.service';
 
 @Component({
     selector: 'app-dashboard',
@@ -15,7 +15,7 @@ export class DashboardComponent implements OnInit {
 
     constructor(
         private router: Router,
-        private pera: PeraService,
+        private pera: PeraWalletService,
         private getBalanceUseCase: GetBalanceUseCase,
     ) {
         this.pera.accountAddress.subscribe((address) => {

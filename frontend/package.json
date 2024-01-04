@@ -20,7 +20,6 @@
     "@angular/platform-browser": "^14.2.0",
     "@angular/platform-browser-dynamic": "^14.2.0",
     "@angular/router": "^14.2.0",
-    "@binance-chain/bsc-connector": "^1.0.0",
     "@perawallet/connect": "^0.2.3",
     "algosdk": "^1.22.0",
     "buffer": "^6.0.3",
@@ -29,6 +28,7 @@
     "rxjs": "~7.5.0",
     "stream-browserify": "^3.0.0",
     "tslib": "^2.3.0",
+    "web3": "^4.3.0",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {

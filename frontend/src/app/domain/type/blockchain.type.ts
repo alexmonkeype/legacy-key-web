@@ -1,1 +1,1 @@
-export type Blockchain = "algorand" | "binance";
+export type Blockchain = "algorand" | "ethereum";

@@ -1,8 +1,9 @@
 import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree} from '@angular/router';
 import {Observable} from 'rxjs';
-import {PeraService} from "../services/pera.service";
-import { BinanceService } from '../services/binance.service';
+import { PeraWalletService } from '../wallets/pera-wallet.service';
+import { MetamaskWalletService } from '../wallets/metamask-wallet.service';
+
 
 @Injectable({
     providedIn: 'root'
@@ -10,8 +11,8 @@ import { BinanceService } from '../services/binance.service';
 export class AuthGuard implements CanActivate {
     constructor(
         private router: Router,
-        private pera: PeraService,
-        private binace: BinanceService
+        private peraWallet: PeraWalletService,
+        private metamaskWallet: MetamaskWalletService
     ) {
 
     }
@@ -20,7 +21,7 @@ export class AuthGuard implements CanActivate {
         route: ActivatedRouteSnapshot,
         state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree
     {
-        if (this.pera.getAccountAddress() == null && this.binace.getAccountAddress() == null) {
+        if (this.peraWallet.getAccountAddress() == null && this.metamaskWallet.getAccountAddress() == null) {
             return this.router.parseUrl('/connect');
         }
         return true;

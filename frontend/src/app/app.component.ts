@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
-import { PeraService } from "./presentation/services/pera.service";
-import { BinanceService } from './presentation/services/binance.service';
+import { PeraWalletService } from "./presentation/wallets/pera-wallet.service";
+import { MetamaskWalletService } from './presentation/wallets/metamask-wallet.service';
 
 
 @Component({
@@ -14,10 +14,10 @@ export class AppComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private pera: PeraService,
-    private binance: BinanceService,
+    private peraWalltet: PeraWalletService,
+    private metamaskWallet: MetamaskWalletService
   ) {
-    this.pera.accountAddress.subscribe((address) => {
+    this.peraWalltet.accountAddress.subscribe((address) => {
       if (address != null) {
         this.isConnected = true;
         this.goToDashboard()
@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
           .catch();
       }
     });
-    this.binance.accountAddress.subscribe((address) => {
+    this.metamaskWallet.accountAddress.subscribe((address) => {
       if (address != null) {
         this.isConnected = true;
         this.goToDashboard()

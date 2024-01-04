@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
-import { PeraService } from "../../services/pera.service";
-import { BinanceService } from '../../services/binance.service';
+import { PeraWalletService } from "../../wallets/pera-wallet.service";
+import { MetamaskWalletService } from '../../wallets/metamask-wallet.service';
 
 @Component({
   selector: 'app-login',
@@ -11,8 +11,8 @@ import { BinanceService } from '../../services/binance.service';
 export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
-    private pera: PeraService,
-    private binance: BinanceService
+    private peraWallet: PeraWalletService,
+    private metamaskWallet: MetamaskWalletService
   ) {
   }
 
@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
   }*/
 
   onPeraConnect() {
-    this.pera
+    this.peraWallet
       .connect()
       .then((newAccounts) => {
         // Setup the disconnect event listener
@@ -58,8 +58,8 @@ export class LoginComponent implements OnInit {
         .catch();*/
   }
 
-  onBinaneConnect() {
-    this.binance
+  onMetamaskConnect() {
+    this.metamaskWallet
       .connect()
       .then(() => {
       })

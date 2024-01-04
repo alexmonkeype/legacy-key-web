@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { BinanceService } from './binance.service';
+import { PeraWalletService } from './pera-wallet.service';
 
-describe('BinanceService', () => {
-  let service: BinanceService;
+describe('PeraService', () => {
+  let service: PeraWalletService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(BinanceService);
+    service = TestBed.inject(PeraWalletService);
   });
 
   it('should be created', () => {
