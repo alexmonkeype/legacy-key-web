@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
         }
       });
   }
-
+  
   onMetamaskConnect() {
     this.loginWeb3UseCase
       .execute("metamask")
@@ -47,5 +47,6 @@ export class LoginComponent implements OnInit {
           // log the necessary errors
         }
       });
-  }
+  }  
+  
 }
