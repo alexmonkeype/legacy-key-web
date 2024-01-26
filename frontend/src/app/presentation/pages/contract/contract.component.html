@@ -26,6 +26,10 @@
       <input type="text" name="grantor_phonenumber" [(ngModel)]="contract.grantor.phonenumber"
         placeholder="Número de celular para contactos" required />
     </div>
+    <div class="row">
+      <label>Monto a custodiar</label>
+      <input type="text" name="beneficiarys_amount" [(ngModel)]="monto" placeholder="Digita el monto a Custodiar" required />
+    </div>
 
 
     <div *ngFor="let beneficiary of contract.beneficiaries; index as i;" class="beneficiaries">
@@ -41,9 +45,9 @@
           placeholder="Escribe aquí el apellido del beneficiario" required />
       </div>
       <div class="row">
-        <label>Correo electrónico</label>
+        <label>Wallet</label>
         <input type="email" name="beneficiary_email" [(ngModel)]="contract.beneficiaries[i].email"
-          placeholder="Escribe aquí el correo electronico del beneficiario" required />
+          placeholder="Escribe aquí la wallet del beneficiario" id="ben_{{i+1}}" required />
       </div>
       <div class="row">
         <input type="checkbox" name="beneficiary_send_info" [(ngModel)]="contract.beneficiaries[i].sendInfo" />
@@ -89,34 +93,34 @@
     <div class="row">
       <label>Tiempo de inactividad</label>
       <select name="validator_inactivity_time" required>
-        <option disabled selected>Seleccionar tiempo</option>
-        <option name="3">3 meses</option>
-        <option name="6">6 meses</option>
-        <option name="12">1 año</option>
-        <option name="18">1 año y 6 meses</option>
+        <option disabled selected>Seleccionar tiempo en meses</option>
+        <option id='mes1' name="3">3</option>
+        <option id='mes2' name="6">6</option>
+        <option id='mes3' name="12">12</option>
+        <option id='mes4' name="18">18</option>
       </select>
     </div>
 
-    <div *ngFor="let validator of contract.validators; index as i;" class="validators">
-      <h4>Validador {{i + 1}}</h4>
+    <div *ngFor="let validator of contract.validators; index as j;" class="validators">
+      <h4>Validador {{j + 1}}</h4>
       <div class="row">
         <label>Nombre</label>
-        <input type="text" name="validator_first_name[i]" placeholder="Escribe aqui los nombres del validador 1"
+        <input type="text" name="validator_first_name[j]" placeholder="Escribe aqui los nombres del validador 1"
           required />
       </div>
       <div class="row">
         <label>Apellidos</label>
-        <input type="text" name="validator_last_name[i]" placeholder="Escribe aqui  los apellidos del validador 1"
+        <input type="text" name="validator_last_name[j]" placeholder="Escribe aqui  los apellidos del validador 1"
           required />
       </div>
       <div class="row">
-        <label>Documento de identidad</label>
-        <input type="text" name="validator_document_id[i]" placeholder="Documento de identidad validador 1" required />
+        <label>Wallet</label>
+        <input type="text" name="validator_email[j]" [(ngModel)]="contract.validators[j].email" placeholder="Wallet validador 1"  required />
       </div>
     </div>
 
     <div class="footer">
-      <button type="submit" mat-raised-button color="primary">Guardar</button>
+      <button type="submit" (click)="guarda()" color="primary">Guardar</button>
     </div>
   </form>
 </section>
