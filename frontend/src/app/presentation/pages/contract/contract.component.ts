@@ -3,6 +3,7 @@ import { LegacyContract, Person } from '../../../domain/model/legacy-contract.mo
 import { GetAccountUseCase } from '../../../domain/usecase/get-account.use-case';
 import { SaveLegacyUseCase } from '../../../domain/usecase/save-legacy.use-case';
 import { Blockchain } from '../../../domain/type/blockchain.type';
+import { GetDataLegacyUseCase } from '../../../domain/usecase/get-data-legacy.use-case';
 
 @Component({
   selector: 'app-contract',
@@ -18,7 +19,8 @@ export class ContractComponent implements OnInit {
 
   constructor(
     private getAccountUseCase: GetAccountUseCase,
-    private saveLegacyUseCase: SaveLegacyUseCase
+    private saveLegacyUseCase: SaveLegacyUseCase,
+    private getDataLegacyUseCase: GetDataLegacyUseCase
   ) {
 
   }
@@ -26,8 +28,20 @@ export class ContractComponent implements OnInit {
   ngOnInit(): void {
     this.getAccountUseCase.execute()
       .then(acc => {
-        this.wallterAddress = acc.address;
+        if (acc.address) {
+          this.wallterAddress = acc.address;
+          this.getContractData(acc.address);
+        }
       });
+  }
+
+  getContractData(account: string): void {
+    this.getDataLegacyUseCase.execute({
+      walletChain: this.walletChain,
+      walletAddress: account
+    }).then(data => {
+      console.log("data", data);
+    }).catch(e => console.error(e));
   }
 
   onAddBeneficiary(): void {

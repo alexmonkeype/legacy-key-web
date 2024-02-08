@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { LoginWeb3UseCase } from '../../../domain/usecase/login-web3.use-case';
+import { IsPaidLegacyUseCase } from '../../../domain/usecase/is-paid-legacy.use-case';
+import { Blockchain } from '../../../domain/type/blockchain.type';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +12,8 @@ import { LoginWeb3UseCase } from '../../../domain/usecase/login-web3.use-case';
 export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
-    private loginWeb3UseCase: LoginWeb3UseCase
+    private loginWeb3UseCase: LoginWeb3UseCase,
+    private isPaidLegacyUseCase: IsPaidLegacyUseCase,
   ) {
   }
 
@@ -22,7 +25,7 @@ export class LoginComponent implements OnInit {
       .execute("pera")
       .then((accounts) => {
         this.router.navigate(['payment'])
-        .catch();
+          .catch();
       })
       .catch((error) => {
         // You MUST handle the reject because once the user closes the modal, peraWallet.connect() promise will be rejected.
@@ -32,13 +35,12 @@ export class LoginComponent implements OnInit {
         }
       });
   }
-  
+
   onMetamaskConnect() {
     this.loginWeb3UseCase
       .execute("metamask")
       .then((accounts) => {
-        this.router.navigate(['payment'])
-        .catch();
+        this.goToNext("ethereum", accounts[0]);
       })
       .catch((error) => {
         // You MUST handle the reject because once the user closes the modal, peraWallet.connect() promise will be rejected.
@@ -47,6 +49,18 @@ export class LoginComponent implements OnInit {
           // log the necessary errors
         }
       });
-  }  
-  
+  }
+
+  goToNext(walletChain: Blockchain, account: string) {
+    this.isPaidLegacyUseCase.execute({
+      walletChain,
+      walletAddress: account
+    }).then(isPaid => {
+      if (isPaid) {
+        this.router.navigate(['contract'])
+      } else {
+        this.router.navigate(['payment'])
+      }
+    }).catch(e => console.error(e));
+  }
 }

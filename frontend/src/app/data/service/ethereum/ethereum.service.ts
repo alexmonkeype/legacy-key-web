@@ -34,6 +34,22 @@ export class EthereunService extends EthereumRepository {
     });
   }
 
+  isPaidLegacyKeySC(address: string): Promise<boolean> {
+    return new Promise<boolean>(async (resolve, reject) => {
+      resolve(false);
+    });
+  }
+
+  getDataLegacyKeySC(address: string): Promise<any> {
+    return new Promise<any>(async (resolve, reject) => {
+      resolve({//Ejemplo. Llenar con todos los datos enviados por el usuario
+        amount: 0,
+        validators: [],
+        beneficiaries: []
+      });
+    });
+  }
+
   payLegacyKeySC(address: string): Promise<void> {
     return new Promise<void>(async (resolve, reject) => {
       const SCLegacyKey = environment.SC_LEGACY_KEY;
