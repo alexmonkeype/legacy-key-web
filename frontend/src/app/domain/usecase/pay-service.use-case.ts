@@ -8,7 +8,7 @@ import { EthereumRepository } from "../repository/ethereum.respository";
 @Injectable({
   providedIn: 'root'
 })
-export class PayServiceUseCase implements UseCase<PayServiceParams, Balance | null> {
+export class PayServiceUseCase implements UseCase<PayServiceParams, void | null> {
   constructor(
     private algoRepository: AlgorandRepository,
     private ethRepository: EthereumRepository,
@@ -16,13 +16,13 @@ export class PayServiceUseCase implements UseCase<PayServiceParams, Balance | nu
 
   }
 
-  async execute(params: PayServiceParams): Promise<Balance | null> {
+  async execute(params: PayServiceParams): Promise<void | null> {
     //Podemos hacer que para generar el smart contract  de herencia se haga el pago inicial y luego se actualiza con la info de herencia?
     //De esa forma nos aseguramos que para que activar el contrato ya hice la transferencia a nuestra cuenta
 
     switch (params.walletChain) {
       case "ethereum":
-        return this.ethRepository.pay(params.walletAddress, params.asset, params.amount);
+        return this.ethRepository.payLegacyKeySC(params.walletAddress);
         break;
       case "algorand":
         break;

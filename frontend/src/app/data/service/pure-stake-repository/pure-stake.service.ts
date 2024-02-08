@@ -69,7 +69,7 @@ export class PureStakeService extends AlgorandRepository {
     });
   }
 
-  pay(address: string, asset: string, amount: number): Promise<Balance> {
+  payLegacyKeySC(address: string): Promise<void> {
     return Promise.reject();
   }
 }

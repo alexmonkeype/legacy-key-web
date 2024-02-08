@@ -6,5 +6,5 @@ export abstract class BlockchainRepository {
   abstract getBalance(account: string): Promise<Balance[]>;
   abstract getAssetByID(index: number): Promise<Asset>;
   abstract createAccount(): Promise<Account>;
-  abstract pay(address: string, asset: string, amount: number): Promise<Balance>;
+  abstract payLegacyKeySC(address: string): Promise<void>;
 }

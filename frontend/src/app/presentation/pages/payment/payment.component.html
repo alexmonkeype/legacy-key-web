@@ -18,6 +18,7 @@
       <span>Único</span>
     </div>
     <div class="footer">
+      <div class="error" *ngIf="errorMessage">{{errorMessage}}</div>
       <button type="submit" mat-raised-button color="primary" (click)="onPay()">Pagar ahora</button>
     </div>
   </form>
