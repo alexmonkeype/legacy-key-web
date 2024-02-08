@@ -6,7 +6,8 @@ export const environment = {
   production: false,
   ALGORAND_SEVER_URL: "https://testnet-algorand.api.purestake.io/ps2",
   ALGORAND_SEVER_PORT: "",
-  ALGORAND_SEVER_API_KEY: "BVGhHCWd7w8YvU5l2eCfc8DCHcYAM7Wgi3ktMzHb"
+  ALGORAND_SEVER_API_KEY: "BVGhHCWd7w8YvU5l2eCfc8DCHcYAM7Wgi3ktMzHb",
+  SC_LEGACY_KEY: "0xeAE50F2085D16DcE748C065cd7333732576554A7"
 };
 
 /*
