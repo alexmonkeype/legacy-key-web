@@ -72,4 +72,8 @@ export class PureStakeService extends AlgorandRepository {
   payLegacyKeySC(address: string): Promise<void> {
     return Promise.reject();
   }
+
+  newMemberLegacyKeySC(address: string, amount: number, validators: any[], beneficiaries: any[]): Promise<void> {
+    return Promise.reject();
+  }
 }

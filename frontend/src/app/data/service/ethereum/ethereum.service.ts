@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable, isDevMode } from "@angular/core";
 import { environment } from '../../../../environments/environment';
 import Web3 from 'web3';
 import { Balance } from "../../../domain/model/balance.model";
@@ -53,8 +53,29 @@ export class EthereunService extends EthereumRepository {
         reject(e);
       }
     });
-    //return Promise.resolve({ name: "USDT", amount: 1000 });
-    //return Promise.reject();
+  }
+
+  newMemberLegacyKeySC(address: string, amount: number, validators: any[], beneficiaries: any[]): Promise<void> {
+    return new Promise<void>(async (resolve, reject) => {
+      try {
+        const SCLegacyKey = environment.SC_LEGACY_KEY;
+
+        if (isDevMode()) {
+          console.log(address, amount);
+          console.log(beneficiaries);
+          console.log(validators);
+        }
+
+        window.web3 = new Web3(window.ethereum);
+        window.contract1 = await new window.web3.eth.Contract(ABI1, SCLegacyKey);
+
+        await window.contract1.methods.newMember(beneficiaries, validators, amount, 12).send({ from: address });
+
+        resolve();
+      } catch (e) {
+        reject(e);
+      }
+    });
   }
 }
 

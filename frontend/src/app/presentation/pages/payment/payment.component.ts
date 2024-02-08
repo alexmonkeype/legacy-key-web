@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { environment } from '../../../../environments/environment';
-import Web3 from 'web3';
 import { PayServiceUseCase } from '../../../domain/usecase/pay-service.use-case';
 import { Blockchain } from '../../../domain/type/blockchain.type';
 import { GetAccountUseCase } from '../../../domain/usecase/get-account.use-case';

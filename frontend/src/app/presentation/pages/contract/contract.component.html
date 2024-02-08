@@ -28,7 +28,7 @@
     </div>
     <div class="row">
       <label>Monto a custodiar</label>
-      <input type="text" name="beneficiarys_amount" [(ngModel)]="monto" placeholder="Digita el monto a Custodiar" required />
+      <input type="text" name="beneficiarys_amount" [(ngModel)]="amount" placeholder="Digita el monto a Custodiar" required />
     </div>
 
 
@@ -120,7 +120,7 @@
     </div>
 
     <div class="footer">
-      <button type="submit" (click)="guarda()" color="primary">Guardar</button>
+      <button type="submit" (click)="savePress()" color="primary">Guardar</button>
     </div>
   </form>
 </section>
