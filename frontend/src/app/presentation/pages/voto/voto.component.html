@@ -1,0 +1,30 @@
+<section>
+  <form id="contract-form" class="form">
+
+    <div class="validators">
+      <h4>Validador </h4>
+      <div class="row">
+        <label>LegacyID</label>
+        <!-- <input type="text" name="idVote" [(ngModel)]="id.idVote" placeholder="Escribe aqui el LegacyID"
+          required /> -->
+      </div>
+      <div class="row">
+        <label>Nombre</label>
+        <input type="text"  placeholder="Escribe aqui tus nombres"
+          required />
+      </div>
+      <div class="row">
+        <label>Apellidos</label>
+        <input type="text"  placeholder="Escribe aqui tus apellidos"
+          required />
+      </div>
+      <div class="row">
+        <label>Wallet: {{wallterAddress}}</label>
+      </div>
+    </div>
+
+    <div class="footer">
+      <button type="submit" (click)="voto()" color="primary">Votar</button>
+    </div>
+  </form>
+</section>

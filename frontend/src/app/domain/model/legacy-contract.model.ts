@@ -15,3 +15,13 @@ export class LegacyContract {
   //validatorQty = 0;
   validators: Person[] = [];
 }
+
+export class voteValidator {
+  grantor: Person = new Person;
+  idVote?: string;
+}
+
+export class cobroHeir {
+  grantor: Person = new Person;
+  idWithdraw?: string;
+}

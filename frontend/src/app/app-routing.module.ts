@@ -6,6 +6,9 @@ import { LegacyComponent } from "./presentation/pages/legacy/legacy.component";
 import { AuthGuard } from "./presentation/guards/auth.guard";
 import { PaymentComponent } from './presentation/pages/payment/payment.component';
 import { ContractComponent } from './presentation/pages/contract/contract.component';
+import { MenuComponent } from './presentation/pages/menu/menu.component';
+import { VotoComponent } from './presentation/pages/voto/voto.component';
+import { CobroComponent } from './presentation/pages/cobro/cobro.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/connect', pathMatch: 'full' },
@@ -13,7 +16,10 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'legacy', component: LegacyComponent, canActivate: [AuthGuard] },
   { path: 'payment', component: PaymentComponent, canActivate: [AuthGuard] },
-  { path: 'contract', component: ContractComponent, canActivate: [AuthGuard] }
+  { path: 'contract', component: ContractComponent, canActivate: [AuthGuard] },
+  { path: 'menu', component: MenuComponent, canActivate: [AuthGuard] },
+  { path: 'voto', component: VotoComponent, canActivate: [AuthGuard] },
+  { path: 'cobro', component: CobroComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

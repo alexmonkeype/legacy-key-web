@@ -40,7 +40,8 @@ export class LoginComponent implements OnInit {
     this.loginWeb3UseCase
       .execute("metamask")
       .then((accounts) => {
-        this.goToNext("ethereum", accounts[0]);
+        //this.goToNext("ethereum", accounts[0]);
+        this.router.navigate(['menu'])
       })
       .catch((error) => {
         // You MUST handle the reject because once the user closes the modal, peraWallet.connect() promise will be rejected.
