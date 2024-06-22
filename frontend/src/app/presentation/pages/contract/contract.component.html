@@ -45,9 +45,9 @@
           placeholder="Escribe aquí el apellido del beneficiario" required />
       </div>
       <div class="row">
-        <label>Wallet</label>
+        <label>Email</label>
         <input type="email" name="beneficiary_email" [(ngModel)]="contract.beneficiaries[i].email"
-          placeholder="Escribe aquí la wallet del beneficiario" id="ben_{{i+1}}" required />
+          placeholder="Correo electrónico del beneficiario" id="ben_{{i+1}}" required />
       </div>
       <div class="row">
         <input type="checkbox" name="beneficiary_send_info" [(ngModel)]="contract.beneficiaries[i].sendInfo" />
@@ -66,9 +66,9 @@
         <label>Criptoactivo</label>
         <select name="beneficiary_asset_name[]" required>
           <option disabled selected>Criptoactivo</option>
-          <option name="BTC">Bitcoin</option>
+          <!-- <option name="BTC">Bitcoin</option>
           <option name="ETH">Etherium</option>
-          <option name="BNB">BNB</option>
+          <option name="BNB">BNB</option> -->
           <option name="USDT">USDT</option>
         </select>
       </div>
@@ -115,7 +115,7 @@
       </div>
       <div class="row">
         <label>Wallet</label>
-        <input type="text" name="validator_email[j]" [(ngModel)]="contract.validators[j].email" placeholder="Wallet validador 1"  required />
+        <input type="text" name="validator_email[j]" [(ngModel)]="contract.validators[j].walletAddress" placeholder="Wallet validador 1"  required />
       </div>
     </div>
 

@@ -72,14 +72,14 @@ export class ContractComponent implements OnInit {
 
     for (var i = 0; i < this.contract.beneficiaries.length; i++) {
       try {
-        bene.push(this.contract.beneficiaries[i].email);
+        bene.push(this.contract.beneficiaries[i].walletAddress);
       }
       catch { }
     }
     console.log(this.contract.validators.length);
     for (var i = 0; i < this.contract.validators.length; i++) {
       try {
-        vali.push(this.contract.validators[i].email);
+        vali.push(this.contract.validators[i].walletAddress);
       }
       catch { }
     }
