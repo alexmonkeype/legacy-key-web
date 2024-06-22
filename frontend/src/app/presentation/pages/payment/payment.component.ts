@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { PayServiceUseCase } from '../../../domain/usecase/pay-service.use-case';
 import { Blockchain } from '../../../domain/type/blockchain.type';
 import { GetAccountUseCase } from '../../../domain/usecase/get-account.use-case';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { LoaderDialog } from '../../components/dialogs/loader/loader.dialog';
 
 @Component({
   selector: 'app-payment',
@@ -15,9 +17,11 @@ export class PaymentComponent implements OnInit {
   asset = "usdt";
   amount = 100;
   errorMessage: string | null = null;
+  dialogRef?: MatDialogRef<LoaderDialog>;
 
   constructor(
     private router: Router,
+    private dialog: MatDialog,
     private getAccountUseCase: GetAccountUseCase,
     private payServiceUseCase: PayServiceUseCase
   ) {
@@ -36,12 +40,12 @@ export class PaymentComponent implements OnInit {
   }
 
   async onPay() {
-
     if (this.wallterAddress == null) {
       return;
     }
 
     //await this.pago();
+    this.showLoader();
 
     this.payServiceUseCase.execute({
       walletChain: this.walletChain,
@@ -53,6 +57,8 @@ export class PaymentComponent implements OnInit {
     }).catch(e => {
       console.log(e);
       this.errorMessage = e.message;
+    }).finally(() => {
+      this.dialogRef?.close();
     });
   }
 
@@ -75,5 +81,11 @@ export class PaymentComponent implements OnInit {
   goToNext() {
     this.router.navigate(['contract'])
       .catch();
+  }
+
+  showLoader() {
+    this.dialogRef = this.dialog.open(LoaderDialog, {
+      disableClose: true
+    });
   }
 }
