@@ -24,6 +24,7 @@
     </div>
 
     <div class="footer">
+      <div class="error" *ngIf="errorMessage">{{errorMessage}}</div>
       <button type="submit" (click)="cobro()" color="primary">Cobrar</button>
     </div>
   </form>
