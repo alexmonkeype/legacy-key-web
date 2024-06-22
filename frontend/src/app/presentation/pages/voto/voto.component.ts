@@ -3,6 +3,8 @@ import { voteValidator } from '../../../domain/model/legacy-contract.model';
 import { GetAccountUseCase } from '../../../domain/usecase/get-account.use-case';
 import { Blockchain } from '../../../domain/type/blockchain.type';
 import { VoteLegacyUseCase } from '../../../domain/usecase/vote-legacy.use-case';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { LoaderDialog } from '../../components/dialogs/loader/loader.dialog';
 
 @Component({
   selector: 'app-voto',
@@ -14,8 +16,10 @@ export class VotoComponent implements OnInit {
   wallterAddress: string | null = null;
   validator = new voteValidator();
   errorMessage: string | null = null;
+  dialogRef?: MatDialogRef<LoaderDialog>;
 
   constructor(
+    private dialog: MatDialog,
     private getAccountUseCase: GetAccountUseCase,
     private voteLegacyUseCase: VoteLegacyUseCase,
   ) {
@@ -33,6 +37,8 @@ export class VotoComponent implements OnInit {
       return;
     }
 
+    this.showLoader();
+
     this.voteLegacyUseCase.execute({
       walletChain: this.walletChain,
       walletAddress: this.wallterAddress,
@@ -43,6 +49,8 @@ export class VotoComponent implements OnInit {
     }).catch(e => {
       console.log(e);
       this.errorMessage = e.message;
+    }).finally(() => {
+      this.dialogRef?.close();
     });
   }
 
@@ -60,5 +68,11 @@ export class VotoComponent implements OnInit {
     if (success) {
       //this.goToNext();
     }
+  }
+
+  showLoader() {
+    this.dialogRef = this.dialog.open(LoaderDialog, {
+      disableClose: true
+    });
   }
 }
