@@ -93,6 +93,23 @@ export class EthereunService extends EthereumRepository {
       }
     });
   }
+
+  voteValidador(address: string, idLegacy: string): Promise<void> {
+    return new Promise<void>(async (resolve, reject) => {
+      try {
+        const SCLegacyKey = environment.SC_LEGACY_KEY;
+
+        window.web3 = await new Web3(window.ethereum);
+        window.contract1 = await new window.web3.eth.Contract(ABI1, SCLegacyKey);
+        //const idLegacy = this.id.idVote;
+        await window.contract1.methods.voteValidador(idLegacy).send({ from: address });
+
+        resolve();
+      } catch (e) {
+        reject(e);
+      }
+    });
+  }
 }
 
 const ABI1 = [
