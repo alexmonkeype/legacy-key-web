@@ -4,6 +4,8 @@ import { GetAccountUseCase } from '../../../domain/usecase/get-account.use-case'
 import { SaveLegacyUseCase } from '../../../domain/usecase/save-legacy.use-case';
 import { Blockchain } from '../../../domain/type/blockchain.type';
 import { GetDataLegacyUseCase } from '../../../domain/usecase/get-data-legacy.use-case';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { LoaderDialog } from '../../components/dialogs/loader/loader.dialog';
 
 @Component({
   selector: 'app-contract',
@@ -16,8 +18,10 @@ export class ContractComponent implements OnInit {
   contract = new LegacyContract();
   amount = 0;
   errorMessage: string | null = null;
+  dialogRef?: MatDialogRef<LoaderDialog>;
 
   constructor(
+    private dialog: MatDialog,
     private getAccountUseCase: GetAccountUseCase,
     private saveLegacyUseCase: SaveLegacyUseCase,
     private getDataLegacyUseCase: GetDataLegacyUseCase
@@ -67,6 +71,8 @@ export class ContractComponent implements OnInit {
       return;
     }
 
+    this.showLoader();
+
     let vali = [];
     let bene = [];
 
@@ -95,6 +101,8 @@ export class ContractComponent implements OnInit {
     }).catch(e => {
       console.log(e);
       this.errorMessage = e.message;
+    }).finally(() => {
+      this.dialogRef?.close();
     });
   }
 
@@ -112,5 +120,11 @@ export class ContractComponent implements OnInit {
     if (success) {
       //this.goToNext();
     }
+  }
+
+  showLoader() {
+    this.dialogRef = this.dialog.open(LoaderDialog, {
+      disableClose: true
+    });
   }
 }
