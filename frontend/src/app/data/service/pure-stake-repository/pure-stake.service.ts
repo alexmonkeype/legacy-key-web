@@ -95,4 +95,8 @@ export class PureStakeService extends AlgorandRepository {
   voteValidador(address: string, idLegacy: string): Promise<void> {
     return Promise.reject();
   }
+
+  withdrawHeir(address: string, idLegacy: string): Promise<void> {
+    return Promise.reject();
+  }
 }

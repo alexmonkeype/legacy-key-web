@@ -11,4 +11,5 @@ export abstract class BlockchainRepository {
   abstract payLegacyKeySC(address: string): Promise<void>;
   abstract newMemberLegacyKeySC(address: string, amount: number, validators: any[], beneficiaries: any[]): Promise<void>;
   abstract voteValidador(address: string, idLegacy: string): Promise<void>;
+  abstract withdrawHeir(address: string, idLegacy: string): Promise<void>;
 }
