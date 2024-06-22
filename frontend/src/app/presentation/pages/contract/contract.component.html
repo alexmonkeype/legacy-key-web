@@ -120,6 +120,7 @@
     </div>
 
     <div class="footer">
+      <div class="error" *ngIf="errorMessage">{{errorMessage}}</div>
       <button type="submit" (click)="savePress()" color="primary">Guardar</button>
     </div>
   </form>
