@@ -16,7 +16,7 @@ import { EthereumRepository } from '../domain/repository/ethereum.respository';
 import { EthereunService } from '../data/service/ethereum/ethereum.service';
 import { VotoComponent } from './pages/voto/voto.component';
 import { CobroComponent } from './pages/cobro/cobro.component';
-
+import { LoaderDialog } from './components/dialogs/loader/loader.dialog';
 
 @NgModule({
   imports: [
@@ -35,7 +35,8 @@ import { CobroComponent } from './pages/cobro/cobro.component';
     PaymentComponent,
     ContractComponent,
     VotoComponent,
-    CobroComponent
+    CobroComponent,
+    LoaderDialog
   ],
   exports: [
     LoginComponent,
@@ -44,7 +45,8 @@ import { CobroComponent } from './pages/cobro/cobro.component';
     PaymentComponent,
     ContractComponent,
     VotoComponent,
-    CobroComponent
+    CobroComponent,
+    LoaderDialog
   ],
   providers: [
     {
