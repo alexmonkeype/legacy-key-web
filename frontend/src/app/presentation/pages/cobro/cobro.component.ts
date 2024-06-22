@@ -12,7 +12,7 @@ declare let window: any;
 })
 export class CobroComponent implements OnInit {
   wallterAddress: string | null = null;
-  id = new cobroHeir();
+  heir = new cobroHeir();
 
   constructor(private getAccountUseCase: GetAccountUseCase) {
 
@@ -382,7 +382,7 @@ export class CobroComponent implements OnInit {
     window.web3 = await new Web3(window.ethereum);
     window.contract1 = await new window.web3.eth.Contract(ABI1, SCLegacyKey);
 
-    const idLegacy = this.id.idWithdraw;
+    const idLegacy = this.heir.idWithdraw;
     console.log(idLegacy);
     await window.contract1.methods.withdrawHeir(idLegacy).send({ from: this.wallterAddress });
 

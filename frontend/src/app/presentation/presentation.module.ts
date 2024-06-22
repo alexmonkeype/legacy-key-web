@@ -15,6 +15,7 @@ import { ContractComponent } from './pages/contract/contract.component';
 import { EthereumRepository } from '../domain/repository/ethereum.respository';
 import { EthereunService } from '../data/service/ethereum/ethereum.service';
 import { VotoComponent } from './pages/voto/voto.component';
+import { CobroComponent } from './pages/cobro/cobro.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { VotoComponent } from './pages/voto/voto.component';
     DialogContentConfirmOpDialog,
     PaymentComponent,
     ContractComponent,
-    VotoComponent
+    VotoComponent,
+    CobroComponent
   ],
   exports: [
     LoginComponent,
@@ -41,7 +43,8 @@ import { VotoComponent } from './pages/voto/voto.component';
     LegacyComponent,
     PaymentComponent,
     ContractComponent,
-    VotoComponent
+    VotoComponent,
+    CobroComponent
   ],
   providers: [
     {
