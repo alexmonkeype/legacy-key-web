@@ -18,7 +18,7 @@ export class LegacyContract {
 
 export class voteValidator {
   grantor: Person = new Person;
-  idVote?: string;
+  idVote: string = "";
 }
 
 export class cobroHeir {

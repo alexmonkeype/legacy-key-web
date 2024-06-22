@@ -14,6 +14,7 @@ import { PureStakeService } from '../data/service/pure-stake-repository/pure-sta
 import { ContractComponent } from './pages/contract/contract.component';
 import { EthereumRepository } from '../domain/repository/ethereum.respository';
 import { EthereunService } from '../data/service/ethereum/ethereum.service';
+import { VotoComponent } from './pages/voto/voto.component';
 
 
 @NgModule({
@@ -31,14 +32,16 @@ import { EthereunService } from '../data/service/ethereum/ethereum.service';
     LegacyComponent,
     DialogContentConfirmOpDialog,
     PaymentComponent,
-    ContractComponent
+    ContractComponent,
+    VotoComponent
   ],
   exports: [
     LoginComponent,
     DashboardComponent,
     LegacyComponent,
     PaymentComponent,
-    ContractComponent
+    ContractComponent,
+    VotoComponent
   ],
   providers: [
     {

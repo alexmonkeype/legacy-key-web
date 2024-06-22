@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { voteValidator } from '../../../domain/model/legacy-contract.model';
 import { GetAccountUseCase } from '../../../domain/usecase/get-account.use-case';
-import Web3 from 'web3';
+import { Blockchain } from '../../../domain/type/blockchain.type';
+import { VoteLegacyUseCase } from '../../../domain/usecase/vote-legacy.use-case';
 
 declare let window: any;
 
@@ -11,10 +12,15 @@ declare let window: any;
   styleUrls: ['./voto.component.scss']
 })
 export class VotoComponent implements OnInit {
+  walletChain: Blockchain = "ethereum";
   wallterAddress: string | null = null;
-  id = new voteValidator();
+  validator = new voteValidator();
+  errorMessage: string | null = null;
 
-  constructor(private getAccountUseCase: GetAccountUseCase) {
+  constructor(
+    private getAccountUseCase: GetAccountUseCase,
+    private voteLegacyUseCase: VoteLegacyUseCase,
+  ) {
   }
 
   ngOnInit(): void {
@@ -25,9 +31,23 @@ export class VotoComponent implements OnInit {
   }
 
   async voto() {
-    console.log("paso por aca");
+    if (this.wallterAddress == null || this.validator.idVote == null) {
+      return;
+    }
 
-    const SCLegacyKey = "0xb2735759f993555a2aeB4E7Cedba931ce25B6d0f";
+    this.voteLegacyUseCase.execute({
+      walletChain: this.walletChain,
+      walletAddress: this.wallterAddress,
+      idLegacy: this.validator.idVote,
+      //SCLegacyKeyAddress: this.id.SCLegacyKeyAddress
+    }).then(() => {
+      this.onSuccessSave();
+    }).catch(e => {
+      console.log(e);
+      this.errorMessage = e.message;
+    });
+
+    /* const SCLegacyKey = "0xb2735759f993555a2aeB4E7Cedba931ce25B6d0f";
     const ABI1 = [
       {
         "inputs": [
@@ -381,8 +401,22 @@ export class VotoComponent implements OnInit {
     window.web3 = await new Web3(window.ethereum);
     window.contract1 = await new window.web3.eth.Contract(ABI1, SCLegacyKey);
     const idLegacy = this.id.idVote;
-    await window.contract1.methods.voteValidador(idLegacy).send({ from: this.wallterAddress });
+    await window.contract1.methods.voteValidador(idLegacy).send({ from: this.wallterAddress }); */
   }
 
+  onSuccessSave() {
+    this.showPopup(
+      "Guardado satisfactorio",
+      "¡Tu contrato se ha guardo con éxito!",
+      "Continuar",
+      "success"
+    );
+  }
 
+  showPopup(title: string, description: string, button: string, icon?: string) {
+    const success = confirm(title + "\n" + description);
+    if (success) {
+      //this.goToNext();
+    }
+  }
 }
