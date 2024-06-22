@@ -3,6 +3,8 @@ import { cobroHeir } from '../../../domain/model/legacy-contract.model';
 import { GetAccountUseCase } from '../../../domain/usecase/get-account.use-case';
 import { CollectLegacyUseCase } from '../../../domain/usecase/collect-legacy.use-case';
 import { Blockchain } from '../../../domain/type/blockchain.type';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { LoaderDialog } from '../../components/dialogs/loader/loader.dialog';
 
 @Component({
   selector: 'app-cobro',
@@ -14,8 +16,10 @@ export class CobroComponent implements OnInit {
   wallterAddress: string | null = null;
   heir = new cobroHeir();
   errorMessage: string | null = null;
+  dialogRef?: MatDialogRef<LoaderDialog>;
 
   constructor(
+    private dialog: MatDialog,
     private getAccountUseCase: GetAccountUseCase,
     private collectLegacyUseCase: CollectLegacyUseCase
   ) {
@@ -34,6 +38,8 @@ export class CobroComponent implements OnInit {
       return;
     }
 
+    this.showLoader();
+
     this.collectLegacyUseCase.execute({
       walletChain: this.walletChain,
       walletAddress: this.wallterAddress,
@@ -43,6 +49,8 @@ export class CobroComponent implements OnInit {
     }).catch(e => {
       console.log(e);
       this.errorMessage = e.message;
+    }).finally(() => {
+      this.dialogRef?.close();
     });
   }
 
@@ -60,5 +68,11 @@ export class CobroComponent implements OnInit {
     if (success) {
       //this.goToNext();
     }
+  }
+
+  showLoader() {
+    this.dialogRef = this.dialog.open(LoaderDialog, {
+      disableClose: true
+    });
   }
 }
