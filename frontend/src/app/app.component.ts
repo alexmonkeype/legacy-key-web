@@ -20,7 +20,12 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.getExchangeRateyUseCase.execute("eth/usd")
       .then(rate => {
-         this.exchangeRate = `ETH: ${rate} USD`;
-       });
+        const options = {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        };
+        const price =  Number(rate.toFixed(2)).toLocaleString('en', options);
+        this.exchangeRate = `ETH: ${price} USD`;
+      });
   }
 }
