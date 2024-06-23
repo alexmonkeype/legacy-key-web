@@ -1,1 +1,0 @@
-Ver [Vídeo](https://drive.google.com/drive/folders/1Kw5UsA8BhNBFcZominOroRO3_N2MACe0)
