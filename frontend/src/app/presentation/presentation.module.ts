@@ -17,6 +17,8 @@ import { EthereunService } from '../data/service/ethereum/ethereum.service';
 import { VotoComponent } from './pages/voto/voto.component';
 import { CobroComponent } from './pages/cobro/cobro.component';
 import { LoaderDialog } from './components/dialogs/loader/loader.dialog';
+import { ExchangeRepository } from '../domain/repository/exchange.repository';
+import { ExchangeService } from '../data/service/exchange/exchange.service';
 
 @NgModule({
   imports: [
@@ -56,6 +58,10 @@ import { LoaderDialog } from './components/dialogs/loader/loader.dialog';
     {
       provide: EthereumRepository,
       useClass: EthereunService
+    },
+    {
+      provide: ExchangeRepository,
+      useClass: ExchangeService
     }
   ],
 })
