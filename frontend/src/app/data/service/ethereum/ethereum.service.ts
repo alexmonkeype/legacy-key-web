@@ -85,7 +85,8 @@ export class EthereunService extends EthereumRepository {
         window.web3 = new Web3(window.ethereum);
         window.contract1 = await new window.web3.eth.Contract(ABI1, SCLegacyKey);
 		window.contract2 = await new window.web3.eth.Contract(ABI2, environment.SC_USDT);
-		await window.contract2.methods.approve(SCLegacyKey, BigInt(amount).toString()).send({ from: address });
+		const amountf = BigInt(amount)*BigInt(10)**BigInt(await window.contract2.methods.decimals().call());
+		await window.contract2.methods.approve(SCLegacyKey, amountf).send({ from: address });
         console.log("Approve terminado");
 
         await window.contract1.methods.newMember(beneficiaries, validators, amount, 12).send({ from: address });
