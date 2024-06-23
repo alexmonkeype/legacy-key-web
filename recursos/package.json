@@ -1,9 +1,0 @@
-{
-  "dependencies": {
-    "algosdk": "^1.22.0",
-    "dotenv": "^16.0.3"
-  },
-  "devDependencies": {
-    "@types/node": "^18.11.6"
-  }
-}
