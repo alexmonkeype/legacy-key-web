@@ -84,6 +84,9 @@ export class EthereunService extends EthereumRepository {
 
         window.web3 = new Web3(window.ethereum);
         window.contract1 = await new window.web3.eth.Contract(ABI1, SCLegacyKey);
+		window.contract2 = await new window.web3.eth.Contract(ABI2, environment.SC_USDT);
+		await window.contract2.methods.approve(SCLegacyKey, BigInt(amount).toString()).send({ from: address });
+        console.log("Approve terminado");
 
         await window.contract1.methods.newMember(beneficiaries, validators, amount, 12).send({ from: address });
 
@@ -132,6 +135,34 @@ export class EthereunService extends EthereumRepository {
 }
 
 const ABI1 = [
+	{
+		"inputs": [
+			{
+				"internalType": "address[]",
+				"name": "_hijos",
+				"type": "address[]"
+			},
+			{
+				"internalType": "address[]",
+				"name": "_validador",
+				"type": "address[]"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_amount",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_time",
+				"type": "uint256"
+			}
+		],
+		"name": "newMember",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
 	{
 		"inputs": [
 			{
@@ -188,6 +219,72 @@ const ABI1 = [
 		],
 		"name": "OwnershipTransferred",
 		"type": "event"
+	},
+	{
+		"inputs": [],
+		"name": "payLegacy",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "renounceOwnership",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_amount",
+				"type": "uint256"
+			}
+		],
+		"name": "setAmountPay",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "newOwner",
+				"type": "address"
+			}
+		],
+		"name": "transferOwnership",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_count",
+				"type": "uint256"
+			}
+		],
+		"name": "voteValidador",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_count",
+				"type": "uint256"
+			}
+		],
+		"name": "withdrawHeir",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
 	},
 	{
 		"inputs": [],
@@ -343,34 +440,6 @@ const ABI1 = [
 		"type": "function"
 	},
 	{
-		"inputs": [
-			{
-				"internalType": "address[]",
-				"name": "_hijos",
-				"type": "address[]"
-			},
-			{
-				"internalType": "address[]",
-				"name": "_validador",
-				"type": "address[]"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_amount",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_time",
-				"type": "uint256"
-			}
-		],
-		"name": "newMember",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
 		"inputs": [],
 		"name": "owner",
 		"outputs": [
@@ -419,68 +488,15 @@ const ABI1 = [
 	},
 	{
 		"inputs": [],
-		"name": "payLegacy",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "renounceOwnership",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
+		"name": "percent",
+		"outputs": [
 			{
 				"internalType": "uint256",
-				"name": "_amount",
+				"name": "",
 				"type": "uint256"
 			}
 		],
-		"name": "setAmountPay",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "newOwner",
-				"type": "address"
-			}
-		],
-		"name": "transferOwnership",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "_count",
-				"type": "uint256"
-			}
-		],
-		"name": "voteValidador",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "_count",
-				"type": "uint256"
-			}
-		],
-		"name": "withdrawHeir",
-		"outputs": [],
-		"stateMutability": "nonpayable",
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
