@@ -52,10 +52,10 @@ export class EthereunService extends EthereumRepository {
 
   payLegacyKeySC(address: string): Promise<void> {
     return new Promise<void>(async (resolve, reject) => {
-      const SCLegacyKey = environment.SC_LEGACY_KEY;
+      const SCLegacyKey = environment.SYSCOIN_LEGACY_KEY;
       window.web3 = new Web3(window.ethereum);
       window.contract1 = await new window.web3.eth.Contract(ABI1, SCLegacyKey);
-      window.contract2 = await new window.web3.eth.Contract(ABI2, environment.SC_USDT);
+      window.contract2 = await new window.web3.eth.Contract(ABI2, environment.SYSCOIN_USDT);
 
       try {
         const amount = await window.contract1.methods.amountPay().call();
@@ -74,7 +74,7 @@ export class EthereunService extends EthereumRepository {
   newMemberLegacyKeySC(address: string, amount: number, validators: any[], beneficiaries: any[]): Promise<void> {
     return new Promise<void>(async (resolve, reject) => {
       try {
-        const SCLegacyKey = environment.SC_LEGACY_KEY;
+        const SCLegacyKey = environment.SYSCOIN_LEGACY_KEY;
 
         if (isDevMode()) {
           console.log(address, amount);
@@ -84,7 +84,7 @@ export class EthereunService extends EthereumRepository {
 
         window.web3 = new Web3(window.ethereum);
         window.contract1 = await new window.web3.eth.Contract(ABI1, SCLegacyKey);
-		window.contract2 = await new window.web3.eth.Contract(ABI2, environment.SC_USDT);
+		window.contract2 = await new window.web3.eth.Contract(ABI2, environment.SYSCOIN_USDT);
 		const amountf = BigInt(amount)*BigInt(10)**BigInt(await window.contract2.methods.decimals().call());
 		await window.contract2.methods.approve(SCLegacyKey, amountf).send({ from: address });
         console.log("Approve terminado");
@@ -101,7 +101,7 @@ export class EthereunService extends EthereumRepository {
   voteValidador(address: string, idLegacy: string): Promise<void> {
     return new Promise<void>(async (resolve, reject) => {
       try {
-        const SCLegacyKey = environment.SC_LEGACY_KEY;
+        const SCLegacyKey = environment.SYSCOIN_LEGACY_KEY;
 
         window.web3 = await new Web3(window.ethereum);
         window.contract1 = await new window.web3.eth.Contract(ABI1, SCLegacyKey);
@@ -118,7 +118,7 @@ export class EthereunService extends EthereumRepository {
   withdrawHeir(address: string, idLegacy: string): Promise<void> {
     return new Promise<void>(async (resolve, reject) => {
       try {
-        const SCLegacyKey = environment.SC_LEGACY_KEY;
+        const SCLegacyKey = environment.SYSCOIN_LEGACY_KEY;
 
         window.web3 = await new Web3(window.ethereum);
         window.contract1 = await new window.web3.eth.Contract(ABI1, SCLegacyKey);
