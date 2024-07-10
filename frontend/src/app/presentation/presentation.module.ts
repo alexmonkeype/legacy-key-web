@@ -19,6 +19,7 @@ import { CobroComponent } from './pages/cobro/cobro.component';
 import { LoaderDialog } from './components/dialogs/loader/loader.dialog';
 import { ExchangeRepository } from '../domain/repository/exchange.repository';
 import { ExchangeService } from '../data/service/exchange/exchange.service';
+import { MenuComponent } from './pages/menu/menu.component';
 
 @NgModule({
   imports: [
@@ -31,6 +32,7 @@ import { ExchangeService } from '../data/service/exchange/exchange.service';
   ],
   declarations: [
     LoginComponent,
+    MenuComponent,
     DashboardComponent,
     LegacyComponent,
     DialogContentConfirmOpDialog,
@@ -42,6 +44,7 @@ import { ExchangeService } from '../data/service/exchange/exchange.service';
   ],
   exports: [
     LoginComponent,
+    MenuComponent,
     DashboardComponent,
     LegacyComponent,
     PaymentComponent,
