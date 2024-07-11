@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { LegacyContract, Person } from '../../../domain/model/legacy-contract.model';
 import { GetAccountUseCase } from '../../../domain/usecase/get-account.use-case';
 import { SaveLegacyUseCase } from '../../../domain/usecase/save-legacy.use-case';
@@ -21,6 +22,7 @@ export class ContractComponent implements OnInit {
   dialogRef?: MatDialogRef<LoaderDialog>;
 
   constructor(
+    private router: Router,
     private dialog: MatDialog,
     private getAccountUseCase: GetAccountUseCase,
     private saveLegacyUseCase: SaveLegacyUseCase,
@@ -118,7 +120,7 @@ export class ContractComponent implements OnInit {
   showPopup(title: string, description: string, button: string, icon?: string) {
     const success = confirm(title + "\n" + description);
     if (success) {
-      //this.goToNext();
+      this.goToNext();
     }
   }
 
@@ -126,5 +128,10 @@ export class ContractComponent implements OnInit {
     this.dialogRef = this.dialog.open(LoaderDialog, {
       disableClose: true
     });
+  }
+
+  goToNext() {
+    this.router.navigate(['menu'])
+      .catch();
   }
 }

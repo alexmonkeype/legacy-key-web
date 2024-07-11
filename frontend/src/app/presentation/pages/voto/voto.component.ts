@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { voteValidator } from '../../../domain/model/legacy-contract.model';
 import { GetAccountUseCase } from '../../../domain/usecase/get-account.use-case';
 import { Blockchain } from '../../../domain/type/blockchain.type';
@@ -19,6 +20,7 @@ export class VotoComponent implements OnInit {
   dialogRef?: MatDialogRef<LoaderDialog>;
 
   constructor(
+    private router: Router,
     private dialog: MatDialog,
     private getAccountUseCase: GetAccountUseCase,
     private voteLegacyUseCase: VoteLegacyUseCase,
@@ -66,7 +68,7 @@ export class VotoComponent implements OnInit {
   showPopup(title: string, description: string, button: string, icon?: string) {
     const success = confirm(title + "\n" + description);
     if (success) {
-      //this.goToNext();
+      this.goToNext();
     }
   }
 
@@ -74,5 +76,10 @@ export class VotoComponent implements OnInit {
     this.dialogRef = this.dialog.open(LoaderDialog, {
       disableClose: true
     });
+  }
+
+  goToNext() {
+    this.router.navigate(['menu'])
+      .catch();
   }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { cobroHeir } from '../../../domain/model/legacy-contract.model';
 import { GetAccountUseCase } from '../../../domain/usecase/get-account.use-case';
 import { CollectLegacyUseCase } from '../../../domain/usecase/collect-legacy.use-case';
@@ -19,6 +20,7 @@ export class CobroComponent implements OnInit {
   dialogRef?: MatDialogRef<LoaderDialog>;
 
   constructor(
+    private router: Router,
     private dialog: MatDialog,
     private getAccountUseCase: GetAccountUseCase,
     private collectLegacyUseCase: CollectLegacyUseCase
@@ -66,7 +68,7 @@ export class CobroComponent implements OnInit {
   showPopup(title: string, description: string, button: string, icon?: string) {
     const success = confirm(title + "\n" + description);
     if (success) {
-      //this.goToNext();
+      this.goToNext();
     }
   }
 
@@ -74,5 +76,10 @@ export class CobroComponent implements OnInit {
     this.dialogRef = this.dialog.open(LoaderDialog, {
       disableClose: true
     });
+  }
+
+  goToNext() {
+    this.router.navigate(['menu'])
+      .catch();
   }
 }
