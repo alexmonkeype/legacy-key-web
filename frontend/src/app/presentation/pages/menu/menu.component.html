@@ -1,12 +1,43 @@
 <section>
-  
   <div class="welcome center">
-    Explicación del servicio
+    <h2>Bienvenido, ¿Qué deseas hacer hoy?</h2>
   </div>
   <div class="center">
-    <p><button mat-raised-button color="primary" (click)="pagar()">Pagar servicio</button></p>
-    <p><button mat-raised-button color="primary" (click)="votar()">Voto de Validador</button></p>
-    <p><button mat-raised-button color="primary" (click)="cobrar()">Cobrar Herencia</button></p>
+    <div class="flex">
+      <div class="col">
+        <mat-card>
+          <img mat-card-image height="160" src="assets/svg/crear-herencia.svg">
+          <mat-card-content>
+            <p>Asegura el futuro de los tuyos, crea una herencia en pocos minutos.</p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-raised-button color="primary" (click)="pagar()">Crear mi herencia</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+      <div class="col">
+        <mat-card>
+          <img mat-card-image height="160" src="assets/svg/validar-suceso.svg">
+          <mat-card-content>
+            <p>Ayudanos a validar un suceso, tu participación es de gran importancia.</p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-raised-button color="primary" (click)="votar()">Validar Suceso</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+      <div class="col">
+        <mat-card>
+          <img mat-card-image height="160" src="assets/svg/ver-herencia.svg">
+          <mat-card-content>
+            <p>Aquí te brindaremos  más información de la herencia que te han dejado.</p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-raised-button color="primary" (click)="cobrar()">Ver mi herencia</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
   </div>
   <div class="terms center">
     <a href="assets/tyc.pdf" target="_blank">Condiciones del servicio</a>
