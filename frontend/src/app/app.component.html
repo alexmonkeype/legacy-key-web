@@ -1,10 +1,38 @@
 <header>
-    <h2><a href="/">Legacy Key</a> </h2>
-    <div *ngIf="exchangeRate">{{exchangeRate}}</div>
+  <h2><a href="/"><img src="assets/svg/legacy.svg" height="40"></a></h2>
+  <div class="flex-1 flex-center">
+    <div *ngIf="exchangeRate" class="right">{{exchangeRate}}</div>
+  </div>
 </header>
 <div class="page">
-    <router-outlet></router-outlet>
+  <router-outlet></router-outlet>
 </div>
 <footer>
-    © <strong>Legacy Key</strong> Todos los derechos reservados
+  <div class="wrapper">
+    <div class="menu">
+      <img src="assets/svg/legacy.svg" height="40" class="filter-white">
+      <p >Solución para el legado de tus criptomonedad. Despreocúpate del legado de tus cripto
+        activos</p>
+    </div>
+    <div class="menu">
+      <p class="title">Dirección</p>
+      <ul>
+        <li class="place">Lima, Perú</li>
+      </ul>
+    </div>
+    <div class="menu">
+      <p class="title">Enlaces</p>
+      <ul>
+        <li><a href="#">Nosotros</a></li>
+        <li><a href="#">Contáctanos</a></li>
+        <li><a href="#">Servicio</a></li>
+      </ul>
+    </div>
+    <div class="menu">
+      <p class="title">Noticias</p>
+      <ul class="none">
+        <li>Participamos en la Hackaton de Andino DAO octubre 2022</li>
+      </ul>
+    </div>
+  </div>
 </footer>

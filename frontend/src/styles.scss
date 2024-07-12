@@ -4,6 +4,7 @@
 
 :root {
   --blue-dark: #15233C;
+  --gray-light: #E8E7E7;
 }
 /* For use in src/lib/core/theming/_palette.scss */
 $md-mcgpalette0: (
@@ -68,10 +69,14 @@ body {
   margin: 0;
   font-family: Roboto,
   "Helvetica Neue", sans-serif;
-  background-color: #F4F7FA;
+  color: #000000;
+  background-color: #fff;
 }
 .center {
   text-align: center;
+}
+.right {
+  text-align: end;
 }
 section {
   margin: 0 0 10px;
@@ -79,4 +84,11 @@ section {
 }
 h1, h2, h3, h4 {
   font-weight: bold !important;
+  color: var(--blue-dark);
+}
+.flex-center {
+  align-self: center;
+}
+.flex-1 {
+  flex: 1
 }
