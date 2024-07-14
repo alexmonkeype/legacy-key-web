@@ -18,9 +18,9 @@ export class MenuComponent implements OnInit {
   }
 
   pagar() {
-    this.router.navigate(['payment'])
+    this.router.navigate(['contract'])
   }
-  
+
   votar() {
     this.router.navigate(['voto'])
   }
@@ -28,5 +28,5 @@ export class MenuComponent implements OnInit {
   cobrar() {
     this.router.navigate(['cobro'])
   }
-  
+
 }

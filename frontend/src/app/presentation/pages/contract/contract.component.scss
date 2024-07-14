@@ -1,4 +1,4 @@
-.row {
+/* .row {
   margin-bottom: 16px;
   label {
     margin-right: 10px;
@@ -14,10 +14,28 @@
     width: 100%;
     max-width: 300px;
   }
-}
+} */
 
 .form {
-  .footer {
+  max-width: 500px;
+  margin: 0 auto;
+  /* .footer {
     margin-top: 30px;
+  } */
+}
+
+.action-buttons {
+  display: flex;
+  gap: 10px;
+  padding-bottom: 20px;
+}
+
+mat-card {
+  margin-bottom: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  .form {
+    max-width: auto;
   }
 }

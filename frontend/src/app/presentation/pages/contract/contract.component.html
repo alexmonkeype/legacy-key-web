@@ -1,127 +1,182 @@
 <section>
-  <form id="contract-form" class="form">
-    <h4>Datos del otorgante</h4>
-    <div class="row">
-      <label>Nombre</label>
-      <input type="text" name="grantor_first_name" [(ngModel)]="contract.grantor.firstName"
-        placeholder="Escribe aquí el nombre del otorgante" required />
-    </div>
-    <div class="row">
-      <label>Apellidos</label>
-      <input type="text" name="grantor_last_name" [(ngModel)]="contract.grantor.lastName"
-        placeholder="Escribe aquí los apellidos del otorgante" required />
-    </div>
-    <div class="row">
-      <label>Documento de identidad</label>
-      <input type="text" name="grantor_document_id" [(ngModel)]="contract.grantor.documentId"
-        placeholder="Documento de identidad del otorgante" required />
-    </div>
-    <div class="row">
-      <label>Correo electrónico</label>
-      <input type="email" name="grantor_email" [(ngModel)]="contract.grantor.email"
-        placeholder="Correo electrónico del otorgante" required />
-    </div>
-    <div class="row">
-      <label>Celular</label>
-      <input type="text" name="grantor_phonenumber" [(ngModel)]="contract.grantor.phonenumber"
-        placeholder="Número de celular para contactos" required />
-    </div>
-    <div class="row">
-      <label>Monto a custodiar</label>
-      <input type="text" name="beneficiarys_amount" [(ngModel)]="amount" placeholder="Digita el monto a Custodiar" required />
-    </div>
-
-
-    <div *ngFor="let beneficiary of contract.beneficiaries; index as i;" class="beneficiaries">
-      <h4>Datos del beneficiario {{i + 1}}</h4>
-      <div class="row">
-        <label>Nombre</label>
-        <input type="text" name="beneficiary_first_name[{{i}}]" [(ngModel)]="contract.beneficiaries[i].firstName"
-          placeholder="Escribe aquí el nombre del beneficiario" required />
+  <mat-stepper [linear]="false" #stepper>
+    <mat-step [stepControl]="grantorFormGroup" label="Otorgante">
+      <form [formGroup]="grantorFormGroup" class="form">
+        <h3>Datos del otorgante</h3>
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Nombre</mat-label>
+          <input matInput type="text" formControlName="grantor_first_name"
+            placeholder="Escribe aquí el nombre del otorgante" required />
+        </mat-form-field>
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Apellidos</mat-label>
+          <input matInput type="text" formControlName="grantor_last_name"
+            placeholder="Escribe aquí los apellidos del otorgante" required />
+        </mat-form-field>
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Documento de identidad</mat-label>
+          <input matInput type="text" formControlName="grantor_document_id"
+            placeholder="Documento de identidad del otorgante" required />
+        </mat-form-field>
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Correo electrónico</mat-label>
+          <input matInput type="email" formControlName="grantor_email" placeholder="Correo electrónico del otorgante"
+            required />
+        </mat-form-field>
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Celular</mat-label>
+          <input matInput type="text" formControlName="grantor_phonenumber"
+            placeholder="Número de celular para contactos" required />
+        </mat-form-field>
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Monto a custodiar</mat-label>
+          <input matInput type="text" formControlName="beneficiarys_amount" placeholder="Digita el monto a Custodiar"
+            required />
+        </mat-form-field>
+        <div class="action-buttons">
+          <button mat-raised-button color="primary" matStepperNext>Siguiente</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="beneficiariesFormGroup" label="Beneficiario">
+      <form [formGroup]="beneficiariesFormGroup" class="form">
+        <h3>Datos del beneficiario</h3>
+        <div formArrayName="beneficiaries">
+          <div *ngFor="let beneficiary of beneficiaryArr.controls; let idx = index" [formGroupName]="idx"
+            class="beneficiaries">
+            <h4>Datos del beneficiario {{idx+ 1}}</h4>
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Nombre</mat-label>
+              <input matInput type="text" formControlName="firstName"
+                placeholder="Escribe aquí el nombre del beneficiario" required />
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Apellidos</mat-label>
+              <input matInput type="text" formControlName="lastName"
+                placeholder="Escribe aquí el apellido del beneficiario" required />
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Email</mat-label>
+              <input matInput type="email" formControlName="email" placeholder="Correo electrónico del beneficiario"
+                required />
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Celular</mat-label>
+              <input matInput type="email" formControlName="phonenumber"
+                placeholder="Escribe aquí el celular del beneficiario" required />
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Monto</mat-label>
+              <input matInput type="email" formControlName="amount" placeholder="Digita el monto a heredar" required />
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Criptoactivo</mat-label>
+              <mat-select formControlName="token" required>
+                <mat-option value="USDT">USDT</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Enviar a wallet</mat-label>
+              <input matInput type="email" formControlName="walletAddress" placeholder="Buscar, dirección publica o ENS"
+                required />
+            </mat-form-field>
+            <p>
+              <mat-checkbox formControlName="sendInfo">Enviar información al heredero al culminar la creación de la
+                herencia</mat-checkbox>
+            </p>
+          </div>
+        </div>
+        <div class="action-buttons">
+          <button mat-raised-button color="primary" (click)="onAddBeneficiary()">Añadir otro heredero</button>
+        </div>
+        <div class="action-buttons">
+          <button mat-raised-button color="primary" matStepperPrevious>Anterior</button>
+          <button mat-raised-button color="primary" matStepperNext>Siguiente</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="validatorsFormGroup" label="Validador">
+      <form [formGroup]="validatorsFormGroup" class="form">
+        <h3>Datos del validador</h3>
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Cantidad de validadores</mat-label>
+          <mat-select formControlName="validators_qty" (selectionChange)="onValidatorsQtyChange($event.value)" required>
+            <mat-option value="1">1</mat-option>
+            <mat-option value="3">3</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Tiempo de inactividad</mat-label>
+          <mat-select formControlName="validator_inactivity_time" required>
+            <mat-option value="3">3 meses</mat-option>
+            <mat-option value="6">6 meses</mat-option>
+            <mat-option value="12">12 meses</mat-option>
+            <mat-option value="18">18 meses</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div formArrayName="validators">
+          <div *ngFor="let validator of validatorArr.controls; let idx = index" [formGroupName]="idx"
+            class="validators">
+            <h4>Datos del beneficiario {{idx+ 1}}</h4>
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Nombre</mat-label>
+              <input matInput type="text" formControlName="firstName" placeholder="Escribe aquí el nombre del validador"
+                required />
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Apellidos</mat-label>
+              <input matInput type="text" formControlName="lastName"
+                placeholder="Escribe aquí el apellido del validador" required />
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Wallet</mat-label>
+              <input matInput type="text" formControlName="walletAddress"
+                placeholder="Escribe aquí la wallet del validador" required />
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="action-buttons">
+          <button mat-raised-button color="primary" matStepperPrevious>Anterior</button>
+          <button mat-raised-button color="primary" matStepperNext>Siguiente</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step label="Firma">
+      <h3>Verifica que los datos sean correctos para poder firmar tu herencia.</h3>
+      <div>
+        <h4>Datos del otorgante</h4>
+        <mat-card>
+          <p><b>Nombre completo</b>: {{grantorFormGroup.value.grantor_first_name}} {{grantorFormGroup.value.grantor_last_name}}</p>
+          <p><b>Documento de identidad</b>: {{grantorFormGroup.value.grantor_document_id}}</p>
+          <p><b>Correo electrónico</b>: {{grantorFormGroup.value.grantor_email}}</p>
+          <p><b>Celular</b>: {{grantorFormGroup.value.grantor_phonenumber}}</p>
+        </mat-card>
+        <h4>Datos del beneficiario</h4>
+        <div>
+          <mat-card *ngFor="let beneficiary of beneficiariesFormGroup.value.beneficiaries; let idx = index">
+            <p><b>Nombre completo</b>: {{beneficiary.firstName}} {{beneficiary.lastName}}</p>
+            <p><b>Correo electrónico</b>: {{beneficiary.email}}</p>
+            <p><b>Celular</b>: {{beneficiary.phonenumber}}</p>
+            <p><b>Monto a heredar</b>: {{beneficiary.amount}} {{beneficiary.token}}</p>
+            <p><b>Wallet</b>: {{beneficiary.walletAddress}}</p>
+            <p><b>Enviar información</b>: {{beneficiary.sendInfo ? 'Si' : 'No'}}</p>
+          </mat-card>
+        </div>
+        <h4>Datos del validador</h4>
+        <div>
+          <p><b>Tiempo de inactividad (meses)</b>: {{validatorsFormGroup.value.validator_inactivity_time}}</p>
+          <mat-card *ngFor="let validator of validatorsFormGroup.value.validators; let idx = index">
+            <p><b>Nombre completo</b>: {{validator.firstName}} {{validator.lastName}}</p>
+            <p><b>Correo electrónico</b>: {{validator.email}}</p>
+            <p><b>Wallet</b>: {{validator.walletAddress}}</p>
+          </mat-card>
+        </div>
       </div>
-      <div class="row">
-        <label>Apellidos</label>
-        <input type="text" name="beneficiary_last_name" [(ngModel)]="contract.beneficiaries[i].lastName"
-          placeholder="Escribe aquí el apellido del beneficiario" required />
+      <div class="action-buttons">
+        <button mat-raised-button color="primary" matStepperPrevious>Anterior</button>
+        <div class="error" *ngIf="errorMessage">{{errorMessage}}</div>
+        <button mat-raised-button color="primary" (click)="savePress()">Guardar</button>
       </div>
-      <div class="row">
-        <label>Email</label>
-        <input type="email" name="beneficiary_email" [(ngModel)]="contract.beneficiaries[i].email"
-          placeholder="Correo electrónico del beneficiario" id="ben_{{i+1}}" required />
-      </div>
-      <div class="row">
-        <input type="checkbox" name="beneficiary_send_info" [(ngModel)]="contract.beneficiaries[i].sendInfo" />
-        <span>Enviar información al heredero al culminar la creación de la herencia</span>
-      </div>
-      <div class="row">
-        <label>Celular</label>
-        <input type="text" name="beneficiary_phonenumber" [(ngModel)]="contract.beneficiaries[i].phonenumber"
-          placeholder="Escribe aquí el celular del beneficiario" required />
-      </div>
-      <div class="row">
-        <label>Monto</label>
-        <input type="text" name="beneficiary_asset_amount" placeholder="Digita el monto a heredar" required />
-      </div>
-      <div class="row">
-        <label>Criptoactivo</label>
-        <select name="beneficiary_asset_name[]" required>
-          <option disabled selected>Criptoactivo</option>
-          <!-- <option name="BTC">Bitcoin</option>
-          <option name="ETH">Etherium</option>
-          <option name="BNB">BNB</option> -->
-          <option name="USDT">USDT</option>
-        </select>
-      </div>
-      <div class="row">
-        <label>Enviar a wallet</label>
-        <input type="text" name="beneficiary_wallet" [(ngModel)]="contract.beneficiaries[i].walletAddress"
-          placeholder="Buscar, dirección publica o ENS" required />
-      </div>
-    </div>
-    <div class="row">
-      <button mat-raised-button color="primary" (click)="onAddBeneficiary()">Añadir otro heredero</button>
-    </div>
-    <h4>Datos de validadores</h4>
-    <div class="row">
-      <label>Cantidad de validadores</label>
-      <select name="validator_qty" (change)="onValidatorsQtyChange($event.target.value)">
-        <option disabled selected>Seleccionar número</option>
-        <option name="1">1</option>
-        <option name="3">3</option>
-      </select>
-    </div>
-    <div class="row">
-      <label>Tiempo de inactividad</label>
-      <select name="validator_inactivity_time" required>
-        <option disabled selected>Seleccionar tiempo en meses</option>
-        <option id='mes1' name="3">3</option>
-        <option id='mes2' name="6">6</option>
-        <option id='mes3' name="12">12</option>
-        <option id='mes4' name="18">18</option>
-      </select>
-    </div>
-
-    <div *ngFor="let validator of contract.validators; index as j;" class="validators">
-      <h4>Validador {{j + 1}}</h4>
-      <div class="row">
-        <label>Nombre</label>
-        <input type="text" name="validator_first_name[j]" placeholder="Escribe aqui los nombres del validador 1"
-          required />
-      </div>
-      <div class="row">
-        <label>Apellidos</label>
-        <input type="text" name="validator_last_name[j]" placeholder="Escribe aqui  los apellidos del validador 1"
-          required />
-      </div>
-      <div class="row">
-        <label>Wallet</label>
-        <input type="text" name="validator_email[j]" [(ngModel)]="contract.validators[j].walletAddress" placeholder="Wallet validador 1"  required />
-      </div>
-    </div>
-
-    <div class="footer">
-      <div class="error" *ngIf="errorMessage">{{errorMessage}}</div>
-      <button type="submit" (click)="savePress()" color="primary">Guardar</button>
-    </div>
-  </form>
+    </mat-step>
+  </mat-stepper>
 </section>
