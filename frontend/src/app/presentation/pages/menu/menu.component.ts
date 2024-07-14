@@ -18,7 +18,7 @@ export class MenuComponent implements OnInit {
   }
 
   pagar() {
-    this.router.navigate(['contract'])
+    this.router.navigate(['payment'])
   }
 
   votar() {
