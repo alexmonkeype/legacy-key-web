@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from "@angular/common/http";
+import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
@@ -21,52 +21,46 @@ import { ExchangeRepository } from '../domain/repository/exchange.repository';
 import { ExchangeService } from '../data/service/exchange/exchange.service';
 import { MenuComponent } from './pages/menu/menu.component';
 
-@NgModule({
-  imports: [
-    CommonModule,
-    MaterialModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    ReactiveFormsModule,
-  ],
-  declarations: [
-    LoginComponent,
-    MenuComponent,
-    DashboardComponent,
-    LegacyComponent,
-    DialogContentConfirmOpDialog,
-    PaymentComponent,
-    ContractComponent,
-    VotoComponent,
-    CobroComponent,
-    LoaderDialog
-  ],
-  exports: [
-    LoginComponent,
-    MenuComponent,
-    DashboardComponent,
-    LegacyComponent,
-    PaymentComponent,
-    ContractComponent,
-    VotoComponent,
-    CobroComponent,
-    LoaderDialog
-  ],
-  providers: [
-    {
-      provide: AlgorandRepository,
-      useClass: PureStakeService
-    },
-    {
-      provide: EthereumRepository,
-      useClass: EthereumService
-    },
-    {
-      provide: ExchangeRepository,
-      useClass: ExchangeService
-    }
-  ],
-})
+@NgModule({ declarations: [
+        LoginComponent,
+        MenuComponent,
+        DashboardComponent,
+        LegacyComponent,
+        DialogContentConfirmOpDialog,
+        PaymentComponent,
+        ContractComponent,
+        VotoComponent,
+        CobroComponent,
+        LoaderDialog
+    ],
+    exports: [
+        LoginComponent,
+        MenuComponent,
+        DashboardComponent,
+        LegacyComponent,
+        PaymentComponent,
+        ContractComponent,
+        VotoComponent,
+        CobroComponent,
+        LoaderDialog
+    ], imports: [CommonModule,
+        MaterialModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        ReactiveFormsModule], providers: [
+        {
+            provide: AlgorandRepository,
+            useClass: PureStakeService
+        },
+        {
+            provide: EthereumRepository,
+            useClass: EthereumService
+        },
+        {
+            provide: ExchangeRepository,
+            useClass: ExchangeService
+        },
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class PresentationModule {
 }
