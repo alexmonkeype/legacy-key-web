@@ -7,7 +7,7 @@ import { GetAccountUseCase } from '../../../domain/usecase/get-account.use-case'
 import { SaveLegacyUseCase } from '../../../domain/usecase/save-legacy.use-case';
 import { Blockchain } from '../../../domain/type/blockchain.type';
 import { GetDataLegacyUseCase } from '../../../domain/usecase/get-data-legacy.use-case';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog, MatLegacyDialogRef as MatDialogRef } from '@angular/material/legacy-dialog';
 import { LoaderDialog } from '../../components/dialogs/loader/loader.dialog';
 
 @Component({

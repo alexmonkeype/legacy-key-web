@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
-import { MatTable, MatTableDataSource } from "@angular/material/table";
-import { MAT_DIALOG_DATA, MatDialog } from "@angular/material/dialog";
-import { MatSnackBar } from "@angular/material/snack-bar";
+import { MatLegacyTable as MatTable, MatLegacyTableDataSource as MatTableDataSource } from "@angular/material/legacy-table";
+import { MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA, MatLegacyDialog as MatDialog } from "@angular/material/legacy-dialog";
+import { MatLegacySnackBar as MatSnackBar } from "@angular/material/legacy-snack-bar";
 import { Balance } from "../../../domain/model/balance.model";
 import { GetBalanceUseCase } from "../../../domain/usecase/get-balance.usecase";
 import { CreateAccountUseCase } from "../../../domain/usecase/create-account.usecase";

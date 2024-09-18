@@ -52,7 +52,7 @@ $my-theme: mat.define-light-theme((
    accent: $my-accent,
    warn: $my-warn,
  ),
- typography: mat.define-typography-config(),
+ typography: mat.define-legacy-typography-config(),
  density: 0,
 ));
 // Emit theme-dependent styles for common features used across multiple components.
@@ -61,7 +61,7 @@ $my-theme: mat.define-light-theme((
 // Emit styles for MatButton based on `$my-theme`. Because the configuration
 // passed to `define-light-theme` omits typography, `button-theme` will not
 // emit any typography styles.
-@include mat.button-theme($my-theme);
+@include mat.legacy-button-theme($my-theme);
 
 
 html, body { height: 100%; }
