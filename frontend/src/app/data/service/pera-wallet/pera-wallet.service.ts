@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { PeraWalletConnect } from "@perawallet/connect";
+//import { PeraWalletConnect } from "@perawallet/connect";
 import { BehaviorSubject, Observable } from "rxjs";
 import { WalletRepository } from '../../../domain/repository/wallet.repository';
 
@@ -8,7 +8,7 @@ import { WalletRepository } from '../../../domain/repository/wallet.repository';
   providedIn: 'root'
 })
 export class PeraWalletService extends WalletRepository {
-  private wallet = new PeraWalletConnect({ shouldShowSignTxnToast: false });
+  //private wallet = new PeraWalletConnect({ shouldShowSignTxnToast: false });
 
   /* private _currentAccountAddress: string | null = null;
 
@@ -29,12 +29,12 @@ export class PeraWalletService extends WalletRepository {
 
   connect(): Promise<string[]> {
     return new Promise<string[]>((resolve, reject) => {
-      this.wallet.connect()
+      /* this.wallet.connect()
         .then((accounts) => {
           //this.onConnect(accounts[0]);
           resolve(accounts);
         })
-        .catch(err => reject(err));
+        .catch(err => reject(err)); */
     });
   }
 
