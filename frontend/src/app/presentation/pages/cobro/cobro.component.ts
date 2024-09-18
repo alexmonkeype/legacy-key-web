@@ -4,7 +4,7 @@ import { cobroHeir } from '../../../domain/model/legacy-contract.model';
 import { GetAccountUseCase } from '../../../domain/usecase/get-account.use-case';
 import { CollectLegacyUseCase } from '../../../domain/usecase/collect-legacy.use-case';
 import { Blockchain } from '../../../domain/type/blockchain.type';
-import { MatLegacyDialog as MatDialog, MatLegacyDialogRef as MatDialogRef } from '@angular/material/legacy-dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { LoaderDialog } from '../../components/dialogs/loader/loader.dialog';
 
 @Component({

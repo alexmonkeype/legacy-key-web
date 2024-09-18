@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { PayServiceUseCase } from '../../../domain/usecase/pay-service.use-case';
 import { Blockchain } from '../../../domain/type/blockchain.type';
 import { GetAccountUseCase } from '../../../domain/usecase/get-account.use-case';
-import { MatLegacyDialog as MatDialog, MatLegacyDialogRef as MatDialogRef } from '@angular/material/legacy-dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { LoaderDialog } from '../../components/dialogs/loader/loader.dialog';
 
 @Component({

@@ -4,7 +4,7 @@ import { voteValidator } from '../../../domain/model/legacy-contract.model';
 import { GetAccountUseCase } from '../../../domain/usecase/get-account.use-case';
 import { Blockchain } from '../../../domain/type/blockchain.type';
 import { VoteLegacyUseCase } from '../../../domain/usecase/vote-legacy.use-case';
-import { MatLegacyDialog as MatDialog, MatLegacyDialogRef as MatDialogRef } from '@angular/material/legacy-dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { LoaderDialog } from '../../components/dialogs/loader/loader.dialog';
 
 @Component({
