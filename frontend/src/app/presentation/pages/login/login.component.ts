@@ -3,6 +3,9 @@ import { Router } from "@angular/router";
 import { LoginWeb3UseCase } from '../../../domain/usecase/login-web3.use-case';
 import { IsPaidLegacyUseCase } from '../../../domain/usecase/is-paid-legacy.use-case';
 import { Blockchain } from '../../../domain/type/blockchain.type';
+import '@polkadot/api-augment';
+import { web3Accounts, web3Enable, web3FromAddress } from '@polkadot/extension-dapp';
+
 
 @Component({
   selector: 'app-login',
