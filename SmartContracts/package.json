@@ -1,0 +1,22 @@
+{
+  "name": "smartcontracts",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "hardhat compile",
+    "deploy": "hardhat ignition deploy ./ignition/modules/LegacyKey.ts --network hardhat",
+    "test": "REPORT_GAS=true hardhat test",
+    "list-networks": "hardhat verify --list-networks"
+  },
+  "author": "",
+  "license": "MIT",
+  "description": "",
+  "devDependencies": {
+    "@chainlink/contracts": "^1.4.0",
+    "@nomicfoundation/hardhat-toolbox": "^6.1.0",
+    "@nomicfoundation/hardhat-verify": "^2.1.0",
+    "@openzeppelin/contracts": "^4.9.6",
+    "dotenv": "^17.2.0",
+    "hardhat": "^2.26.0"
+  }
+}
